@@ -1,0 +1,57 @@
+{
+  "slides": [
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\KLDivergenceScene\\8ce49398c1d8b15aeaff152f26d67be9e316040effd49684e32bf7be9545e6d0.mp4",
+      "rev_file": "slides\\files\\KLDivergenceScene\\8ce49398c1d8b15aeaff152f26d67be9e316040effd49684e32bf7be9545e6d0_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\KLDivergenceScene\\18ffcb16586d32ccc4503dc9d3c877792c02f00ae930d0a97e539e21c9d7d2ec.mp4",
+      "rev_file": "slides\\files\\KLDivergenceScene\\18ffcb16586d32ccc4503dc9d3c877792c02f00ae930d0a97e539e21c9d7d2ec_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\KLDivergenceScene\\0b588b8f18411e7a3a08689ae559bf320fc568354a4b2f192b443b9b1e25c432.mp4",
+      "rev_file": "slides\\files\\KLDivergenceScene\\0b588b8f18411e7a3a08689ae559bf320fc568354a4b2f192b443b9b1e25c432_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\KLDivergenceScene\\994d8ae3ccb3617d8ed9e70b15770c47c5fe2da3ef1e306c5f7c0f71c6d27a6f.mp4",
+      "rev_file": "slides\\files\\KLDivergenceScene\\994d8ae3ccb3617d8ed9e70b15770c47c5fe2da3ef1e306c5f7c0f71c6d27a6f_reversed.mp4"
+    }
+  ],
+  "resolution": [
+    1920,
+    1080
+  ],
+  "background_color": "black"
+}

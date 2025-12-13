@@ -1,0 +1,1 @@
+manim-slides Intro Scene2_1 Scene2_2 Scene2_3 Scene2_4 Scene2_5 Scene2_6 Scene2_7 Scene2_8 Scene2_9

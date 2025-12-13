@@ -1,0 +1,81 @@
+{
+  "slides": [
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\Taxonomy\\786b44dacbf73f08d6fe1a119a28c3beb6dd9f00b77bb5b077bc32749fc4cfd5.mp4",
+      "rev_file": "slides\\files\\Taxonomy\\786b44dacbf73f08d6fe1a119a28c3beb6dd9f00b77bb5b077bc32749fc4cfd5_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\Taxonomy\\cb8ba4b04f407f622aebde183eacc58e052878a384bcc3ec2c370d30ed52daa5.mp4",
+      "rev_file": "slides\\files\\Taxonomy\\cb8ba4b04f407f622aebde183eacc58e052878a384bcc3ec2c370d30ed52daa5_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\Taxonomy\\e04b145364064b76af8e5334b459c202247fd12390d36dabdabe819f011eced7.mp4",
+      "rev_file": "slides\\files\\Taxonomy\\e04b145364064b76af8e5334b459c202247fd12390d36dabdabe819f011eced7_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\Taxonomy\\bc76407901551abe63256f0ab96b614e6d73b630de587614d1cf4ab67913a34b.mp4",
+      "rev_file": "slides\\files\\Taxonomy\\bc76407901551abe63256f0ab96b614e6d73b630de587614d1cf4ab67913a34b_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\Taxonomy\\88f5b879c3502aed8e17da2a164c67e736a2cc8fd502d60148baaf2ccd5b9a9a.mp4",
+      "rev_file": "slides\\files\\Taxonomy\\88f5b879c3502aed8e17da2a164c67e736a2cc8fd502d60148baaf2ccd5b9a9a_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\Taxonomy\\7e8fce0b617ecdd1aac566af81ce9c18052aed2c5248c60844ae63f897584e78.mp4",
+      "rev_file": "slides\\files\\Taxonomy\\7e8fce0b617ecdd1aac566af81ce9c18052aed2c5248c60844ae63f897584e78_reversed.mp4"
+    }
+  ],
+  "resolution": [
+    1920,
+    1080
+  ],
+  "background_color": "black"
+}
