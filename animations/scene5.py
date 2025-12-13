@@ -56,7 +56,7 @@ class Scene2_5(Slide):
         self.play(
             FadeOut(elbo_rect),
             FadeOut(elbo_label),
-            ReplacementTransform(elbo, elbo2),
+            FadeTransformPieces(elbo, elbo2),
             run_time=2,
         )
 
