@@ -98,7 +98,7 @@ class Intro(Slide):
         title = Text("Taxonomy of Generative Models", font_size=30, weight=BOLD)
         title.to_edge(UP, buff=0.3)
  
-        self.play(Write(title))
+        self.play(Write(title), run_time=0.5)
         self.wait(0.5)
         
         # Root node
@@ -499,5 +499,7 @@ class Intro(Slide):
         # Animation xuất hiện đồ thị từ dưới lên
         self.play(FadeIn(plots, shift=UP * 0.5))
         
+        self.next_slide()
+        self.play(FadeOut(*self.mobjects))
         # Giữ màn hình một chút 
-        self.wait(3)
+        self.wait(1)
