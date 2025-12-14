@@ -173,7 +173,7 @@ class Scene2_4(Slide):
         ).to_edge(UP, buff=0.2)
         train_txt[1].set_color(BLUE)
 
-        self.play(Write(train_txt))
+        self.play(Write(train_txt),run_time=1)
 
         self.next_slide()
 
@@ -189,7 +189,7 @@ class Scene2_4(Slide):
         nll[1].set_color(BLUE)
         rect_nll = SurroundingRectangle(nll, color=WHITE, buff=0.1)
 
-        self.play(Write(objective))
+        self.play(Write(objective),run_time=1)
         self.play(LaggedStart(FadeIn(nll), Create(rect_nll), lag_ratio=0.5), run_time=1.5)
         
         self.next_slide()
@@ -229,9 +229,7 @@ class Scene2_4(Slide):
 
         self.play(Write(joint_q_bayes[0]), run_time=0.5)
 
-        self.next_slide()
-
-        self.play(Write(joint_q_bayes[1]))
+        self.play(Write(joint_q_bayes[1]), run_time=0.5)
 
         q_bayes_simple = MathTex(
             r"q(x_1, \ldots, x_T \mid x_0) = q(x_1 \mid x_0) ~ q(x_2 \mid x_1) ~ \ldots ~ q(x_T \mid x_{T-1})",
@@ -241,7 +239,7 @@ class Scene2_4(Slide):
 
         self.next_slide()
 
-        self.play(Write(q_bayes_simple), run_time=1.5)
+        self.play(Write(q_bayes_simple), run_time=1)
         q_bayes_simple_1 = MathTex(
             r"q(x_{1:T} \mid x_0) =",
             r"q(x_1 \mid x_0) ~ q(x_2 \mid x_1) ~ \ldots ~ q(x_T \mid x_{T-1})",
@@ -251,7 +249,7 @@ class Scene2_4(Slide):
 
         self.next_slide()
 
-        self.play(Write(q_bayes_simple_1))
+        self.play(Write(q_bayes_simple_1),run_time=1)
 
         q_bayes_simple_2 = MathTex(
             r"\prod_{t=1}^T q(x_t \mid x_{t-1})",
@@ -283,7 +281,7 @@ class Scene2_4(Slide):
         )
         joint_p[1].set_color(BLUE)
 
-        self.play(Write(joint_p))
+        self.play(Write(joint_p),run_time=0.8)
 
         label_q = Tex("Complete forward process", font_size=32).next_to(
             q_bayes_simple_1, DOWN, buff=0.5
@@ -292,10 +290,8 @@ class Scene2_4(Slide):
             joint_p, DOWN, buff=0.5
         )
 
-        self.next_slide()
-
-        self.play(Write(label_q))
-        self.play(Write(label_p))
+        self.play(Write(label_q),run_time=0.5)
+        self.play(Write(label_p),run_time=0.5)
 
         # Show that the likelihood is intractable
         self.next_section(skip_animations=False)
@@ -320,12 +316,12 @@ class Scene2_4(Slide):
             FadeOut(objective, rect_nll, label_q, label_p),
             VGroup(joint_p, q_bayes_simple_1).animate.to_edge(UP, buff=0.5),
             nll.animate.move_to(marginalize, aligned_edge=LEFT),
-            run_time=1.5,
+            run_time=1.25,
         )
 
         self.next_slide()
 
-        self.play(Write(marginalize[3:]))
+        self.play(Write(marginalize[3:]),run_time=1)
 
         l_ellipse = Ellipse(width=2, height=3, color=WHITE).shift(DOWN + 2 * LEFT)
         r_ellipse = Ellipse(width=2, height=3, color=WHITE).shift(DOWN + 2 * RIGHT)
@@ -348,10 +344,10 @@ class Scene2_4(Slide):
 
         self.next_slide()
 
-        self.play(Create(l_ellipse))
-        self.play(Write(l_ellipse_title))
-        self.play(Create(r_ellipse))
-        self.play(Write(r_ellipse_title))
+        self.play(Create(l_ellipse),run_time=0.5)
+        self.play(Write(l_ellipse_title),run_time=0.5)
+        self.play(Create(r_ellipse),run_time=0.5)
+        self.play(Write(r_ellipse_title),run_time=0.5)
 
         l_dot_label = MathTex(r"x_0", color=WHITE, font_size=32).next_to(
             l_dot, UP + LEFT, buff=0.2
@@ -360,8 +356,6 @@ class Scene2_4(Slide):
             r_dot, UP + RIGHT, buff=0.2
         )
 
-        self.next_slide()
-
         self.play(FadeIn(l_dot, l_dot_label))
         self.play(FadeIn(r_dot, r_dot_label))
         self.play(Create(paths[0]))
@@ -369,17 +363,15 @@ class Scene2_4(Slide):
         self.next_slide()
 
         self.play(Circumscribe(marginalize[6], color=WHITE))
-        self.wait(1)
+        self.wait(0.5)
 
         self.next_slide()
 
-        self.play(LaggedStart(*[Create(path) for path in paths[1:]], lag_ratio=0.3), run_time=2)
+        self.play(LaggedStart(*[Create(path) for path in paths[1:]], lag_ratio=0.3), run_time=1.5)
 
         self.next_slide()
 
-        self.play(LaggedStart(*[FadeOut(path, shift=0.5 * DOWN) for path in paths], lag_ratio=0.2), run_time=2)
-
-        self.next_slide()
+        self.play(LaggedStart(*[FadeOut(path, shift=0.5 * DOWN) for path in paths], lag_ratio=0.2), run_time=1.5)
 
         self.play(
             FadeOut(l_ellipse, l_ellipse_title, l_dot, l_dot_label),
@@ -416,7 +408,7 @@ class Scene2_4(Slide):
         )
         formula.to_edge(LEFT, buff=1)
 
-        self.play(Write(formula), run_time=2)
+        self.play(Write(formula), run_time=1)
 
         jensen = MathTex(
             r"- \log p_{\theta}(x_0) \leq ",
@@ -446,11 +438,11 @@ class Scene2_4(Slide):
         self.next_slide()
 
         self.play(Create(elbo_rect))
-        self.play(Write(elbo_label))
+        self.play(Write(elbo_label),run_time=1)
 
         self.play(FadeOut(q_bayes_simple_1, joint_p))
 
-        self.wait(1)
+        self.wait(0.5)
 
 
 if __name__ == "__main__":

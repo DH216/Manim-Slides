@@ -36,7 +36,7 @@ class Scene2_5(Slide):
             elbo_rect,
             elbo_label,
         )
-
+        self.wait(0.5)
         self.next_slide()
 
         elbo_complete = MathTex(
@@ -57,7 +57,7 @@ class Scene2_5(Slide):
             FadeOut(elbo_rect),
             FadeOut(elbo_label),
             FadeTransformPieces(elbo, elbo2),
-            run_time=2,
+            run_time=1.5,
         )
 
         # NV 2
@@ -69,7 +69,9 @@ class Scene2_5(Slide):
         
         # Công thức 1
         eq1 = MathTex(
-            r"L = \mathbb{E}_q \left[ -\log \frac{p_\theta(\mathbf{x}_{0:T})}{q(\mathbf{x}_{1:T}|\mathbf{x}_0)} \right]",
+            r"L",
+            r"=",
+            r"\mathbb{E}_q \left[ -\log \frac{p_\theta(\mathbf{x}_{0:T})}{q(\mathbf{x}_{1:T}|\mathbf{x}_0)} \right]",
             color=COLOR_MATH
         )
 
@@ -108,25 +110,25 @@ class Scene2_5(Slide):
         equations.to_edge(UP, buff=1.0)
 
         # --- 4. TRÌNH CHIẾU (SLIDES) ---
-
+        self.wait(0.5)
         self.play(
-            ReplacementTransform(elbo2,eq1)
+            FadeTransformPieces(elbo2,eq1)
         )
 
         # SLIDE 1
         self.next_slide() 
 
         # SLIDE 2
-        self.play(TransformFromCopy(eq1, eq2), run_time=1.5)
-        self.wait(1)
+        self.play(TransformFromCopy(eq1[1:], eq2), run_time=1)
+        self.wait(0.5)
         self.next_slide()
 
         # SLIDE 3
-        self.play(FadeIn(eq3, shift=DOWN * 0.2), run_time=1.5)
+        self.play(FadeIn(eq3, shift=DOWN * 0.2), run_time=1)
         self.next_slide()
 
         # SLIDE 4
-        self.play(FadeIn(eq4, shift=DOWN * 0.2), run_time=1.5)
+        self.play(FadeIn(eq4, shift=DOWN * 0.2), run_time=1)
         
         self.next_slide() 
         
@@ -150,21 +152,21 @@ class Scene2_5(Slide):
         self.next_slide()
 
         # Di chuyển công thức cũ sang trái
-        self.play(equations.animate.to_edge(LEFT, buff=1.0), run_time=1.5)
+        self.play(equations.animate.to_edge(LEFT, buff=1.0), run_time=1)
         self.next_slide()
 
         # Hiện công thức mới bên phải
-        self.play(Write(new_equation), run_time=1.5)
-        self.next_slide()
-
+        self.play(Write(new_equation), run_time=1)
+        
         # --- 3. HIỆU ỨNG ĐƯỜNG VIỀN CHẠY QUANH (MỚI THÊM) ---
         
         # Tạo khung hình chữ nhật bao quanh công thức mới
         box = SurroundingRectangle(new_equation, color=COLOR_BOX, buff=0.2, stroke_width=4)
         
         # Hiệu ứng vẽ đường viền (Create)
-        self.play(Create(box), run_time=1.5)
-        
+        self.play(Create(box), run_time=1)
+        self.wait(0.5)
+
         # Dừng lại để thuyết trình về công thức được đóng khung
         self.next_slide()
         top_group = VGroup(eq1, eq2, eq3, eq4)
@@ -195,12 +197,12 @@ class Scene2_5(Slide):
         
         # Bước 1: Hiện lại 4 công thức cũ (dạng Recap)
         # Bước 2: Viết công thức 5
-        self.play(Write(eq5), run_time=2.0)
+        self.play(Write(eq5), run_time=1.5)
         self.next_slide()
 
         # Bước 3: Biến đổi sang công thức 6 (KL Divergence)
         self.play(TransformFromCopy(eq5, eq6), run_time=2.0)
-        self.wait(1)
+        self.wait(0.5)
         self.next_slide()
         
         # Kết thúc
@@ -280,7 +282,7 @@ class Scene2_5(Slide):
         kl_1 = MathTex(r"2", font_size=24, color=WHITE).next_to(
             kl_rect, LEFT, aligned_edge=UP, buff=0.2
         )
-        self.wait(1)
+        self.wait(0.5)
         self.next_slide()
 
         self.play(
@@ -290,7 +292,7 @@ class Scene2_5(Slide):
                 AnimationGroup(Create(g1), Write(p_label)),
                 lag_ratio=0.5,
             ),
-            run_time=3,
+            run_time=2,
         )
 
 
@@ -321,7 +323,7 @@ class Scene2_5(Slide):
             LaggedStart(
                 Transform(g1, new_g1), Transform(kl_bar, new_bar), lag_ratio=0.1
             ),
-            run_time=2,
+            run_time=1.5,
         )
 
         mu = 0
@@ -346,7 +348,7 @@ class Scene2_5(Slide):
             LaggedStart(
                 Transform(g1, new_g1), Transform(kl_bar, new_bar), lag_ratio=0.1
             ),
-            run_time=2,
+            run_time=1.5,
         )
 
         mu = 1
@@ -371,7 +373,7 @@ class Scene2_5(Slide):
             LaggedStart(
                 Transform(g1, new_g1), Transform(kl_bar, new_bar), lag_ratio=0.1
             ),
-            run_time=2,
+            run_time=1.5,
         )
 
         self.next_slide()
@@ -427,7 +429,7 @@ class Scene2_5(Slide):
             r"\text{Does not depend on} ~", r"\theta", font_size=32
         ).next_to(rect_1, DOWN, buff=0.5)
         not_depend[1].set_color(BLUE)
-        self.play(Write(not_depend))
+        self.play(Write(not_depend),run_time=1)
 
         cross_1 = Cross(
             elbo_complete[1],
@@ -505,7 +507,7 @@ class Scene2_5(Slide):
                 ),
                 lag_ratio=0.5,
             ),
-            run_time=3,
+            run_time=2,
         )
 
         self.next_slide()
@@ -536,7 +538,7 @@ class Scene2_5(Slide):
                     not_depend,
                     shift=0.5 * DOWN,
                 ),
-                ReplacementTransform(
+                FadeTransformPieces(
                     VGroup(elbo_complete[0], elbo_complete[2:7], elbo_complete[10:]),
                     elbo_simplified,
                 ),
@@ -548,12 +550,12 @@ class Scene2_5(Slide):
         self.next_slide()
 
         self.play(Circumscribe(elbo_simplified[4:7], color=WHITE, run_time=1.5))
-        self.wait(1)
+        self.wait(0.5)
 
         self.next_slide()
 
         self.play(Circumscribe(elbo_simplified[2], color=WHITE, run_time=1.5))
-        self.wait(1)
+        self.wait(0.5)
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ class Scene2_1(Slide):
                 ddpm_p1.animate.shift(UP * start_y_offset),
                 ddpm_p2.animate.shift(UP * start_y_offset),
                 lag_ratio=0.5,
-                run_time=2.0,
+                run_time=1.0,
             )
         )
 
@@ -53,8 +53,8 @@ class Scene2_1(Slide):
         ).next_to(ddpm_date, UP, buff=0.25)
         ddpm_title_ul = Underline(ddpm_title)
 
-        self.play(LaggedStart(Write(ddpm_title), Create(ddpm_title_ul), lag_ratio=0.5))
-        self.play(Write(ddpm_date))
+        self.play(LaggedStart(Write(ddpm_title), Create(ddpm_title_ul), lag_ratio=0.5), run_time=1.0)
+        self.play(Write(ddpm_date),run_time=0.5)
 
         self.next_slide()
 
@@ -82,7 +82,7 @@ class Scene2_1(Slide):
                 diffusion_p1.animate.shift(UP * start_y_offset),
                 diffusion_p2.animate.shift(UP * start_y_offset),
                 lag_ratio=0.5,
-                run_time=2.0,
+                run_time=1.0,
             )
         )
 
@@ -102,9 +102,10 @@ class Scene2_1(Slide):
                 Create(diffusion_title_ul_1),
                 Create(diffusion_title_ul_2),
                 lag_ratio=0.5,
-            )
+            ),
+            run_time = 1.0
         )
-        self.play(Write(diffusion_date))
+        self.play(Write(diffusion_date), run_time=0.5)
 
         self.next_slide()
 
@@ -120,14 +121,14 @@ class Scene2_1(Slide):
             diffusion_date,
         )
 
-        self.play(Circumscribe(ddpm_paper, shape=Rectangle, color=WHITE, run_time=2))
+        self.play(Circumscribe(ddpm_paper, shape=Rectangle, color=WHITE, run_time=1))
 
         self.next_slide()
 
         self.play(FadeOut(diffusion_paper))
 
         citation_number = Tex("20 000+ citations", font_size=32).move_to(3 * RIGHT)
-        self.play(Write(citation_number))
+        self.play(Write(citation_number), run_time=0.5)
         self.play(FadeOut(citation_number, shift=0.5 * DOWN))
 
         # Main contributions
@@ -171,19 +172,20 @@ class Scene2_1(Slide):
         self.play(
             LaggedStart(
                 Write(contribution_title), Create(contribution_title_ul), lag_ratio=0.5
-            )
+            ),
+            run_time=0.8
         )
 
         self.next_slide()
 
-        self.play(LaggedStart(*[Write(item) for item in contrib_items], lag_ratio=0.5))
-        self.play(Create(contrib_box))
+        self.play(LaggedStart(*[Write(item) for item in contrib_items], lag_ratio=0.5), run_time=1)
+        self.play(Create(contrib_box), run_time=0.5)
 
         contributions = Group(
             contribution_title, contribution_title_ul, contrib_items, contrib_box
         )
         
-        self.wait(2)
+        self.wait(0.5)
 
         self.next_slide()
 
@@ -195,8 +197,8 @@ class Scene2_1(Slide):
         pdf = KDEContours().scale_to_fit_width(5)
         pdf_title = MathTex("p(x)").next_to(pdf, UP, buff=0.25)
 
-        self.play(Create(pdf), Write(pdf_title))
-
+        self.play(Create(pdf), Write(pdf_title),run_time=1)
+        self.wait(0.5)
         # Individual image loading and positioning
         img0 = (
             ImageMobject("Imgs/Scene1/ffhq_0")
@@ -233,7 +235,7 @@ class Scene2_1(Slide):
                 Create(rect0),
                 FadeIn(img0),
                 lag_ratio=0.5,
-                run_time=2,
+                run_time=0.5,
             )
         )
 
@@ -244,7 +246,7 @@ class Scene2_1(Slide):
                 Create(rect1),
                 FadeIn(img1),
                 lag_ratio=0.5,
-                run_time=2,
+                run_time=0.5,
             )
         )
         self.play(
@@ -254,7 +256,7 @@ class Scene2_1(Slide):
                 Create(rect2),
                 FadeIn(img2),
                 lag_ratio=0.5,
-                run_time=2,
+                run_time=0.5,
             )
         )
 
@@ -303,11 +305,7 @@ class Scene2_1(Slide):
 
         self.play(Write(eq_start))
 
-        self.next_slide()
-
         self.play(FadeIn(eq1[2], shift=0.5 * DOWN))
-
-        self.next_slide()
 
         # Add red cross for eq1
         cross1 = Cross(eq1[2], stroke_color=RED, stroke_width=6)
@@ -326,8 +324,6 @@ class Scene2_1(Slide):
         # Add red cross for eq2
         cross2 = Cross(eq2[2], stroke_color=RED, stroke_width=6)
         
-        self.next_slide()
-
         self.play(Create(cross2))
 
         self.next_slide()
@@ -448,18 +444,20 @@ class Scene2_1(Slide):
 
         self.next_slide()
         
-        self.play(GrowArrow(arrow1))
+        self.play(GrowArrow(arrow1),run_time=0.5)
         self.play(
             Group(img0_noise30, rect_noise30).animate.move_to(img0_noise30_pos),
             Write(label_x1),
+            run_time=0.5
         )
 
         self.next_slide()
 
-        self.play(GrowArrow(arrow2))
+        self.play(GrowArrow(arrow2),run_time=0.5)
         self.play(
             Group(img0_noise60, rect_noise60).animate.move_to(img0_noise60_pos),
             Write(label_x2),
+            run_time=0.5
         )
         Group(pure_noise, rect_pure_noise).move_to(pure_noise_pos)
 
@@ -471,6 +469,7 @@ class Scene2_1(Slide):
                 FadeIn(Group(pure_noise, rect_pure_noise)),
                 Write(label_xT),
                 lag_ratio=0.5,
+                run_time=0.5
             )
         )
 
@@ -503,18 +502,18 @@ class Scene2_1(Slide):
 
         self.next_slide()
 
-        self.play(Create(reversed_arrow1))
-        self.play(Write(label_arrow1))
+        self.play(Create(reversed_arrow1),run_time=0.5)
+        self.play(Write(label_arrow1),run_time=0.5)
 
         self.next_slide()
 
-        self.play(Create(reversed_arrow2))
-        self.play(Write(label_arrow2))
+        self.play(Create(reversed_arrow2),run_time=0.5)
+        self.play(Write(label_arrow2),run_time=0.5)
 
         self.next_slide()
 
-        self.play(Create(reversed_arrow3))
-        self.play(Write(label_arrow3))
+        self.play(Create(reversed_arrow3),run_time=0.5)
+        self.play(Write(label_arrow3),run_time=0.5)
 
         self.next_slide()
 

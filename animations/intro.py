@@ -36,7 +36,7 @@ class Intro(Slide):
 
         # Chủ đề DDPM
         topic = Text(
-            "Chủ đề: DDPM (Diffusion Probabilistic Models)",
+            "Chủ đề: DDPM (Denoising Diffusion Probabilistic Models)",
             font="Roboto",
             color=YELLOW
         ).scale(0.6).next_to(title, DOWN, buff=0.7)

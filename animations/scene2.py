@@ -25,11 +25,9 @@ class Scene2_2(Slide):
 
         self.play(LaggedStart(Create(circle_x0), Write(x0), lag_ratio=0.5))
 
-        self.next_slide()
-
         self.play(
-            LaggedStart(Create(line_x0), FadeIn(ffhq, rect_ffhq), lag_ratio=0.8),
-            run_time=1.5,
+            LaggedStart(Create(line_x0), FadeIn(ffhq, rect_ffhq), lag_ratio=0.5),
+            run_time=1,
         )
 
         self.next_slide()
@@ -37,8 +35,6 @@ class Scene2_2(Slide):
         self.play(
             Group(circle_x0, x0, line_x0, ffhq, rect_ffhq).animate.shift(LEFT * 2)
         )
-
-        self.next_slide()
 
         circle_x1 = Circle(radius=0.5, color=WHITE).shift(RIGHT * 2)
         x1 = MathTex("x_1", color=WHITE, font_size=32).move_to(circle_x1.get_center())
@@ -64,18 +60,17 @@ class Scene2_2(Slide):
                 GrowArrow(arrow_q1),
                 AnimationGroup(Create(circle_x1), Write(x1)),
                 lag_ratio=0.5,
+                run_time=1
             )
         )
-
-        self.next_slide()
 
         self.play(
             LaggedStart(
                 Create(line_x1),
                 FadeIn(ffhq_noise1, rect_ffhq_noise1),
-                lag_ratio=0.8,
+                lag_ratio=0.5,
             ),
-            run_time=1.5,
+            run_time=1,
         )
         self.play(Write(label_q1))
 
@@ -148,13 +143,14 @@ class Scene2_2(Slide):
                 GrowArrow(arrow_q2),
                 AnimationGroup(Create(circle_x2), Write(x2)),
                 lag_ratio=0.5,
+                run_time=1
             )
         )
         self.play(
             LaggedStart(
-                Create(line_x2), FadeIn(ffhq_noise2, rect_ffhq_noise2), lag_ratio=0.8
+                Create(line_x2), FadeIn(ffhq_noise2, rect_ffhq_noise2), lag_ratio=0.5
             ),
-            run_time=1.5,
+            run_time=1,
         )
 
         self.play(Write(label_q2))
@@ -191,7 +187,7 @@ class Scene2_2(Slide):
             r"q(x_2|x_0) = \mathcal{N}(x_0, 2 \beta)", color=WHITE, font_size=32
         ).next_to(arrow_q0_q2, UP, buff=0.5)
 
-        self.play(GrowArrow(arrow_q0_q2))
+        self.play(GrowArrow(arrow_q0_q2),run_time=0.5)
 
         self.play(Write(eq_7))
         
@@ -232,7 +228,7 @@ class Scene2_2(Slide):
             arrow_q0_q2.animate.move_to(circle_x1),
             ReplacementTransform(x2, xt),
             FadeIn(noise),
-            run_time=2,
+            run_time=1.5,
         )
 
         eq_xt = MathTex(
@@ -249,9 +245,9 @@ class Scene2_2(Slide):
             font_size=32,
         ).next_to(arrow_q0_q2, DOWN, buff=0.5)
 
-        self.play(Write(eq_xt))
+        self.play(Write(eq_xt), run_time=0.8)
 
-        self.play(Write(label_q0_t))
+        self.play(Write(label_q0_t), run_time=0.8)
 
         self.next_slide()
 
@@ -291,6 +287,7 @@ class Scene2_2(Slide):
         
         self.play(Write(variance_exploding))
 
+        self.next_slide()
         self.play(ApplyWave(variance_exploding))
 
         self.play(FadeOut(*self.mobjects))

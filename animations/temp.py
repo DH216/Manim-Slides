@@ -1,12 +1,12 @@
 from manim import *
 from manim_slides import Slide
+import numpy as np
+import sys
 
-def T(text, size=28, color=WHITE):
-    return Text(
-        text,
-        font_size=size,
-        color=color
-    )
+sys.path.append("../")
+from src.kde_density import KDEContours
+
+
 
 class Temp(Slide):
     def create_box(self,text, color, scale=1.0):
@@ -25,152 +25,203 @@ class Temp(Slide):
         return VGroup(box, label)
     
     def construct(self):
-        # ===================================================================
-        # PHẦN 4: CHI TIẾT GAN (Đã bỏ mũi tên)
-        # ===================================================================
-        
-        try:
-            # Đường dẫn trực tiếp cho từng ảnh GAN
-            g_sample = ImageMobject(r"./Imgs/image11")
-            g_real   = ImageMobject(r"./Imgs/image12")
-            g_latent = ImageMobject(r"./Imgs/image13")
-            g_gen    = ImageMobject(r"./Imgs/image14")
-            g_fake   = ImageMobject(r"./Imgs/image15")
-            g_disc   = ImageMobject(r"./Imgs/image16")
-            g_out    = ImageMobject(r"./Imgs/image17")
-        except FileNotFoundError as e:
-            self.add(Text(f"Lỗi thiếu file GAN:\n{str(e).split(':')[-1].strip()}", color=RED, font_size=20))
-            self.wait(2)
-            return
+        tex_to_color_map = {
+            r"\theta": BLUE,
+        }
+        # Show the expression with KL
+        self.next_section(skip_animations=False)
 
-        # Sắp xếp bố cục GAN
-        # Trình chiếu GAN
-        g_out.move_to(ORIGIN).to_edge(RIGHT).shift(LEFT*1)
-        g_disc.next_to(g_out,LEFT,buff=0)
-        g_fake.next_to(g_disc,LEFT,buff=0).shift(DOWN*1)
-        g_gen.next_to(g_fake,LEFT,buff=0)
-        g_latent.next_to(g_gen,LEFT,buff=0)
-        g_real.next_to(g_disc,LEFT,buff=0).shift(UP*1.5)
-        g_sample.next_to(g_real,LEFT,buff=0)
-        gan_main_title = T("Generative Adversarial Network (GAN)", 36, BLUE).to_edge(UP)
-        self.play(FadeIn(gan_main_title))
-        self.next_slide()
-        
-        high_main_title = T("High\nDimensional\nSample", 20, WHITE).next_to(g_sample,LEFT)
-        self.play(LaggedStart(
-                            FadeIn(high_main_title), 
-                            FadeIn(g_sample), 
-                            FadeIn(g_real),
-                            lag_ratio=0.2
-                            ))
-        self.next_slide()
+        elbo = MathTex(
+            r"- \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ \log \frac{p_{\theta}(x_{0:T})}{q(x_{1:T} \mid x_0)} \right]",
+            color=WHITE,
+            font_size=32,
+        )
+        elbo2 = MathTex(
+            r" \mathbb{E}_{q(x_{1:T} \mid x_0)} \left[ - \log \frac{p_{\theta}(x_{0:T})}{q(x_{1:T} \mid x_0)} \right]",
+            color=WHITE,
+            font_size=32,
+        )
+        elbo_rect = SurroundingRectangle(elbo, color=WHITE, buff=0.1)
+        elbo_label = Tex("Evidence Lower Bound (ELBO)", font_size=32).next_to(
+            elbo_rect, UP, buff=0.2
+        )
 
-        Low_main_title = T("Low\nDimensional\nLatent", 20, WHITE).next_to(g_latent,LEFT)
-        self.play(LaggedStart(
-            FadeIn(Low_main_title),
-            FadeIn(g_latent),
-            FadeIn(g_gen),
-            FadeIn(g_fake),
-            lag_ratio=0.2
-        ))
-        self.next_slide()
 
-        self.play(FadeIn(g_disc))
-        self.next_slide()
-
-        self.play(FadeIn(g_out))
-        self.next_slide()
-
-        self.play(FadeOut(Group( gan_main_title,high_main_title,Low_main_title,g_out,g_disc,g_fake,g_gen,g_latent,g_real,g_sample)))
+        self.add(
+            elbo,
+            elbo_rect,
+            elbo_label,
+        )
         self.wait(0.5)
-# --- CẤU HÌNH MÀU SẮC & STYLE ---
-        # Lấy màu giống trong hình/video
-        COLOR_FORWARD = "#FF5252"  # Màu đỏ cam
-        COLOR_REVERSE = "#4FC3F7"  # Màu xanh dương sáng
-        TEXT_COLOR = WHITE
-        
-        # --- 1. TIÊU ĐỀ ---
-        title = Text("Diffusion Models", font_size=48, weight=BOLD).to_edge(UP)
-        self.play(Write(title), run_time=0.5)
-        
-        # --- 2. CÁC NÚT (NODES) ---
-        # Tạo hai vòng tròn đại diện cho x_{t-1} và x_t
-        radius = 0.7
-        distance = 3.5
-        
-        # Nút bên trái (x_{t-1})
-        circle_left = Circle(radius=radius, color=WHITE, stroke_width=2)
-        tex_left = MathTex("x_{t-1}", font_size=40)
-        group_left = VGroup(circle_left, tex_left).move_to(LEFT * distance)
-        
-        # Nút bên phải (x_t)
-        circle_right = Circle(radius=radius, color=WHITE, stroke_width=2)
-        tex_right = MathTex("x_t", font_size=40)
-        group_right = VGroup(circle_right, tex_right).move_to(RIGHT * distance)
-        
-        self.play(FadeIn(group_left), FadeIn(group_right))
-        
-        # --- 3. MŨI TÊN (ARROWS) ---
-        
-        # Mũi tên Thuận (Forward - Red) - Cong lên trên
-        arrow_forward = CurvedArrow(
-            start_point=circle_left.get_top(),
-            end_point=circle_right.get_top(),
-            angle=-TAU/4, # Độ cong
-            color=COLOR_FORWARD,
-            stroke_width=3
+        self.next_slide()
+
+        elbo_complete = MathTex(
+            r"\mathbb{E}_q \left[",
+            r"D_{\mathrm{KL}}( q(x_T \mid x_0) \mid \mid p(x_T))",
+            r"+",
+            r"\sum_{t > 1} D_{\mathrm{KL}}( q(x_{t-1} \mid x_t, x_0) \mid \mid p_{\theta}(x_{t-1} \mid x_t))",
+            r"-",
+            r"\log p_{\theta}(x_0 \mid x_1)",
+            r"\right]",
+            color=WHITE,
+            font_size=28,
+            tex_to_color_map=tex_to_color_map,
+        ).to_edge(UP, buff=0.5)
+
+
+        self.play(
+            FadeOut(elbo_rect),
+            FadeOut(elbo_label),
+            FadeTransformPieces(elbo, elbo2),
+            run_time=1.5,
         )
-        label_forward = MathTex("q(x_t | x_{t-1})", font_size=36, color=WHITE)
-        label_forward.next_to(arrow_forward, UP, buff=0.1)
+
+        # NV 2
+        ############################
+        COLOR_MATH = WHITE
+        COLOR_HIGHLIGHT = "#FF5252" # Màu đỏ cam để nhấn mạnh
+
+        # --- 2. ĐỊNH NGHĨA CÔNG THỨC ---
         
-        # Mũi tên Ngược (Reverse - Blue) - Cong xuống dưới, nét đứt
-        arrow_reverse_base = CurvedArrow(
-            start_point=circle_right.get_bottom(),
-            end_point=circle_left.get_bottom(),
-            angle=-TAU/4,
-            color=COLOR_REVERSE,
-            stroke_width=3
+        # Công thức 1
+        eq1 = MathTex(
+            r"L",
+            r"=",
+            r"\mathbb{E}_q \left[ -\log \frac{p_\theta(\mathbf{x}_{0:T})}{q(\mathbf{x}_{1:T}|\mathbf{x}_0)} \right]",
+            color=COLOR_MATH
         )
-        # Tạo hiệu ứng nét đứt (Dashed Line)
-        arrow_reverse = DashedVMobject(arrow_reverse_base, num_dashes=15)
-        
-        label_reverse = MathTex("p_{\\theta}(x_{t-1} | x_t)", font_size=36, color=WHITE)
-        label_reverse.next_to(arrow_reverse, DOWN, buff=0.1)
 
-        # Animation vẽ mũi tên
-        self.play(Create(arrow_forward), Write(label_forward), run_time=0.5)
-        self.play(Create(arrow_reverse), Write(label_reverse), run_time=0.5)
-
-        # --- 4. PHÂN PHỐI GAUSSIAN (CENTER) ---
-        # Tạo hệ trục ảo để vẽ đồ thị (ẩn trục đi)
-        axes = Axes(
-            x_range=[-4, 4, 1],
-            y_range=[0, 1, 1],
-            x_length=4,
-            y_length=2,
-            axis_config={"include_tip": False, "stroke_opacity": 0} # Ẩn trục
-        ).move_to(ORIGIN + DOWN * 0.2) # Dịch xuống một chút cho cân đối
-
-        # Hàm Gaussian (Normal Distribution)
-        def gaussian(x, mu, sigma):
-            return np.exp(-((x - mu)**2) / (2 * sigma**2))
-
-        # Đồ thị Đỏ (Forward) - Lệch trái một chút
-        graph_red = axes.plot(lambda x: 0.8 * gaussian(x, -0.5, 0.6), color=COLOR_FORWARD)
-        area_red = axes.get_area(graph_red, color=COLOR_FORWARD, opacity=0.5)
         
-        # Đồ thị Xanh (Reverse) - Lệch phải một chút
-        graph_blue = axes.plot(lambda x: 0.8 * gaussian(x, 0.5, 0.6), color=COLOR_REVERSE)
-        area_blue = axes.get_area(graph_blue, color=COLOR_REVERSE, opacity=0.5)
-        
-        # Đường kẻ ngang phía dưới (trục hoành tượng trưng)
-        baseline = Line(start=LEFT*2, end=RIGHT*2, color=GREY, stroke_width=1).move_to(axes.c2p(0, 0))
 
-        # Nhóm đồ thị lại
-        plots = VGroup(baseline, area_red, graph_red, area_blue, graph_blue)
+        # Công thức 2
+        eq2 = MathTex(
+            r"= \mathbb{E}_q \left[ -\log \frac{p(\mathbf{x}_T) \prod_{t=1}^T p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)}{\prod_{t=1}^T q(\mathbf{x}_t|\mathbf{x}_{t-1})} \right]",
+            color=COLOR_MATH
+        )
+
+        # Công thức 3
+        eq3 = MathTex(
+            r"= \mathbb{E}_q \left[ -\log p(\mathbf{x}_T) - \sum_{t \ge 1} \log \frac{p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)}{q(\mathbf{x}_t|\mathbf{x}_{t-1})} \right]",
+            color=COLOR_MATH
+        )
+
+        # Công thức 4 (Dòng dài nhất - cần chú ý)
+        eq4 = MathTex(
+            r"= \mathbb{E}_q \Bigg[ -\log p(\mathbf{x}_T) - \sum_{t > 1} \log \frac{p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)}{q(\mathbf{x}_t|\mathbf{x}_{t-1})} ",
+            r"- \log \frac{p_\theta(\mathbf{x}_0|\mathbf{x}_1)}{q(\mathbf{x}_1|\mathbf{x}_0)} \Bigg]",
+        )
+
+        # --- 3. SẮP XẾP VỊ TRÍ ---
         
-        # Animation xuất hiện đồ thị từ dưới lên
-        self.play(FadeIn(plots, shift=UP * 0.5))
+        # Nhóm tất cả lại
+        equations = VGroup(eq1, eq2, eq3, eq4)
         
-        # Giữ màn hình một chút 
-        self.wait(3)
+        # Căn lề trái và dãn dòng (giảm buff xuống 0.5 để tiết kiệm chỗ dọc)
+        equations.arrange(DOWN, buff=0.5, aligned_edge=LEFT)
+        
+        # Thu nhỏ toàn bộ khối (scale 0.75)
+        equations.scale(0.5)
+
+        # Đẩy lên sát mép trên (cách lề trên 1 đơn vị)
+        equations.to_edge(UP, buff=1.0)
+
+        # --- 4. TRÌNH CHIẾU (SLIDES) ---
+        self.wait(0.5)
+        self.play(
+            FadeTransformPieces(elbo2,eq1)
+        )
+
+        # SLIDE 1
+        self.next_slide() 
+
+        # SLIDE 2
+        self.play(TransformFromCopy(eq1[1:], eq2), run_time=1)
+        self.wait(0.5)
+        self.next_slide()
+
+        # SLIDE 3
+        self.play(FadeIn(eq3, shift=DOWN * 0.2), run_time=1)
+        self.next_slide()
+
+        # SLIDE 4
+        self.play(FadeIn(eq4, shift=DOWN * 0.2), run_time=1)
+        
+        self.next_slide() 
+        
+        COLOR_MATH = WHITE
+        COLOR_BOX = WHITE # Màu của khung viền
+
+        # Các công thức cũ (Bên trái)
+        # Ban đầu ở bên phải (để chuẩn bị di chuyển)
+        equations.to_edge(UP, buff=1.0)
+        self.add(equations)
+
+        # Công thức mới (Sẽ hiện bên phải)
+        new_equation = MathTex(
+            r"q(\mathbf{x}_t|\mathbf{x}_{t-1}) = \frac{q(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) \cdot q(\mathbf{x}_t|\mathbf{x}_0)}{q(\mathbf{x}_{t-1}|\mathbf{x}_0)}",
+            color=COLOR_MATH
+        )
+        new_equation.scale(0.5)
+        new_equation.to_edge(RIGHT, buff=1.0) # Căn phải
+
+        # --- 2. HOẠT CẢNH DI CHUYỂN VÀ HIỆN CÔNG THỨC ---
+        self.next_slide()
+
+        # Di chuyển công thức cũ sang trái
+        self.play(equations.animate.to_edge(LEFT, buff=1.0), run_time=1)
+        self.next_slide()
+
+        # Hiện công thức mới bên phải
+        self.play(Write(new_equation), run_time=1)
+        
+        # --- 3. HIỆU ỨNG ĐƯỜNG VIỀN CHẠY QUANH (MỚI THÊM) ---
+        
+        # Tạo khung hình chữ nhật bao quanh công thức mới
+        box = SurroundingRectangle(new_equation, color=COLOR_BOX, buff=0.2, stroke_width=4)
+        
+        # Hiệu ứng vẽ đường viền (Create)
+        self.play(Create(box), run_time=1)
+        self.wait(0.5)
+
+        # Dừng lại để thuyết trình về công thức được đóng khung
+        self.next_slide()
+        top_group = VGroup(eq1, eq2, eq3, eq4)
+        eq5 = MathTex(
+            r"= \mathbb{E}_q \Bigg[ -\log \frac{p(\mathbf{x}_T)}{q(\mathbf{x}_T|\mathbf{x}_0)} - \sum_{t>1} \log \frac{p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)}{q(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0)} - \log p_\theta(\mathbf{x}_0|\mathbf{x}_1) \Bigg]",
+            color=COLOR_MATH
+        )
+        
+        # Công thức 6 (Eq 22): Chuyển sang KL Divergence
+        # D_KL(...) || ...)
+        eq6 = MathTex(
+            r"= \mathbb{E}_q \Bigg[ ", 
+            r"D_{KL}(q(\mathbf{x}_T|\mathbf{x}_0) \| p(\mathbf{x}_T))", 
+            r" + \sum_{t>1} ", 
+            r"D_{KL}(q(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0) \| p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t))", 
+            r" - \log p_\theta(\mathbf{x}_0|\mathbf{x}_1) \Bigg]"
+        )
+        
+        # Nhóm 2 công thức mới
+        new_group = VGroup(eq5, eq6)
+        new_group.arrange(DOWN, buff=0.5, aligned_edge=LEFT)
+        new_group.scale(0.5) # Kích thước vừa phải, lớn hơn nhóm trên 1 chút để dễ đọc
+        
+        # Đặt vị trí: Dưới nhóm cũ
+        new_group.next_to(top_group, DOWN, buff=0.2).to_edge(LEFT, buff=1.0)
+
+        # --- 4. TRÌNH CHIẾU ---
+        
+        # Bước 1: Hiện lại 4 công thức cũ (dạng Recap)
+        # Bước 2: Viết công thức 5
+        self.play(Write(eq5), run_time=1.5)
+        self.next_slide()
+
+        # Bước 3: Biến đổi sang công thức 6 (KL Divergence)
+        self.play(FadeTransformPieces(eq5, eq6), run_time=2.0)
+        self.wait(0.5)
+        self.next_slide()
+        
+        # Kết thúc
+        self.play(FadeOut(top_group), FadeOut(eq5),FadeOut(new_equation),FadeOut(box))
+
+

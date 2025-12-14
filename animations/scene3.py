@@ -55,20 +55,23 @@ class Scene2_3(Slide):
 
         title_obj_ul = Underline(title_obj)
 
-        self.play(LaggedStart(Write(title_obj), Create(title_obj_ul)))
+        self.play(LaggedStart(Write(title_obj), Create(title_obj_ul), run_time=0.5))
 
         self.play(
             Write(q_xt_x0),
+            run_time=0.8
         )
 
         self.play(
             LaggedStart(
                 GrowArrow(arrow1),
                 FadeIn(t_inf),
+                run_time=0.5
             )
         )
         self.play(
             Write(normal),
+            run_time=0.8
         )
 
         rect_objective = SurroundingRectangle(
@@ -83,7 +86,7 @@ class Scene2_3(Slide):
 
         self.next_slide()
 
-        self.play(Create(rect_objective))
+        self.play(Create(rect_objective), run_time=0.8)
         self.play(objective.animate.to_edge(UP, buff=0.2))
 
         circle_xt1 = Circle(radius=0.5, color=WHITE).shift(LEFT * 3)
@@ -97,10 +100,8 @@ class Scene2_3(Slide):
             circle_xt.get_left(),
         )
 
-        self.next_slide()
-
         self.play(FadeIn(circle_xt1, xt1))
-        self.play(GrowArrow(arrow_xt1_xt))
+        self.play(GrowArrow(arrow_xt1_xt),run_time=0.5)
         self.play(FadeIn(circle_xt, xt))
 
         # Define the iterates
@@ -120,16 +121,14 @@ class Scene2_3(Slide):
         )
         qmark = Tex("?", font_size=32).move_to(rect_empty)
 
-        self.next_slide()
-
         self.play(
             LaggedStart(
                 Write(q_xt_xt1[0]),
                 AnimationGroup(Create(rect_empty), Create(qmark)),
                 Write(q_xt_xt1[2]),
-                lag_ratio=0.95,
+                lag_ratio=0.5,
             ),
-            run_time=2.5,
+            run_time=2,
         )
 
         self.next_slide()
@@ -155,7 +154,7 @@ class Scene2_3(Slide):
 
         self.play(FadeOut(q_xt_xt1))
         self.play(ReplacementTransform(xt1, x0))
-        self.play(Write(q_xt_x0_exp))
+        self.play(Write(q_xt_x0_exp),run_time=1)
 
         self.play(Write(a_t))
 
@@ -165,17 +164,17 @@ class Scene2_3(Slide):
         self.next_slide()
 
         self.play(Circumscribe(a_t, color=WHITE))
-        self.wait(1)
+        self.wait(0.5)
 
         self.next_slide()
 
         self.play(Circumscribe(q_xt_x0_exp[1], color=WHITE), buff=0.02)
-        self.wait(1)
+        self.wait(0.5)
 
         self.next_slide()
 
         self.play(Circumscribe(q_xt_x0_exp[3], color=WHITE), buff=0.02)
-        self.wait(1)
+        self.wait(0.5)
 
         self.next_slide()
 
@@ -198,8 +197,8 @@ class Scene2_3(Slide):
 
         self.next_slide()
 
-        self.play(Create(plot1d), run_time=2)
-        self.play(Create(plot_bimodal), run_time=2)
+        self.play(Create(plot1d), run_time=1)
+        self.play(Create(plot_bimodal), run_time=1)
 
         # Iterate over 100 DDPM steps
         current_plot = plot_bimodal
@@ -208,7 +207,7 @@ class Scene2_3(Slide):
         label = MathTex(r"p(x)", font_size=32, color=BLUE).next_to(
             plot1d, UL, buff=-0.8
         )
-        self.play(Write(label))
+        self.play(Write(label),run_time=0.5)
 
         # Plot initial DDPM step
         current_plot = plot_bimodal
@@ -225,7 +224,7 @@ class Scene2_3(Slide):
                     plot1d, UL, buff=-0.8
                 ),
             ),
-            run_time=1.5,
+            run_time=1,
         )
 
         current_plot = new_plot
@@ -263,7 +262,7 @@ class Scene2_3(Slide):
                     plot1d, UL, buff=-0.8
                 ),
             ),
-            run_time=2,
+            run_time=1.5,
         )
 
         current_plot = plot_bimodal
@@ -280,7 +279,7 @@ class Scene2_3(Slide):
                     plot1d, UL, buff=-0.8
                 ),
             ),
-            run_time=2,
+            run_time=1.5,
         )
 
         ddpm_paper = ImageMobject(
@@ -305,7 +304,7 @@ class Scene2_3(Slide):
                 FadeOut(label, plot1d),
                 lag_ratio=0.5,
             ),
-            run_time=2,
+            run_time=1.5,
         )
 
         self.play(chain.animate.move_to(ORIGIN))
@@ -316,7 +315,7 @@ class Scene2_3(Slide):
         self.next_slide()
 
         self.play(Circumscribe(a_t, color=WHITE), run_time=1.5)
-        self.wait(1)
+        self.wait(0.5)
         
         a_t_updated = MathTex(
             r"\bar{\alpha}_t = ",
@@ -326,7 +325,7 @@ class Scene2_3(Slide):
 
         self.next_slide()
 
-        self.play(Transform(a_t[1], a_t_updated[1]), run_time=2)
+        self.play(Transform(a_t[1], a_t_updated[1]), run_time=1.5)
 
         self.next_slide()
 
