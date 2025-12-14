@@ -180,9 +180,3 @@ class Taxonomy(Scene):
         label.move_to(box.get_center())
         return VGroup(box, label)
 
-
-# To render this animation, save this file and run:
-# manim -pql filename.py GenerativeModelsTaxonomy
-# 
-# For higher quality:
-# manim -pqh filename.py GenerativeModelsTaxonomy
