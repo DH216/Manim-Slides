@@ -11,7 +11,7 @@ def T(text, size=28, color=WHITE):
 class Intro(Slide):
     def create_box(self,text, color, scale=1.0):
         """Create a rounded box with text inside"""
-        label = Text(text, font_size=int(28 * scale), font="Roboto")
+        label = Tex(text, font_size=40*scale)
         box = Rectangle(
             width=label.width + 0.6,
             height=label.height + 0.4,
@@ -24,16 +24,15 @@ class Intro(Slide):
         label.move_to(box.get_center())
         return VGroup(box, label)
     def construct(self):
-    
+        
+        self.next_slide()
         # Tiêu đề nhóm
         title = Text(
             "Nhóm 17",
             font="Roboto",
             color=WHITE
         ).scale(1).to_edge(UP)
-        self.play(Write(title))
-
-        self.next_slide()
+        self.add(title)
 
         # Chủ đề DDPM
         topic = Text(
@@ -41,8 +40,8 @@ class Intro(Slide):
             font="Roboto",
             color=YELLOW
         ).scale(0.6).next_to(title, DOWN, buff=0.7)
-        self.play(Write(topic))
-        self.next_slide()
+        self.add(topic)
+       
 
         # Danh sách thành viên
         members = [
@@ -60,12 +59,14 @@ class Intro(Slide):
             ]
         ).arrange(DOWN, aligned_edge=LEFT).next_to(topic, DOWN, buff=0.7)
 
-        for member in member_texts:
-            self.play(Write(member),run_time=0.75)
+       
+        self.add(member_texts)
+        self.wait()
         self.next_slide()
+        
 
         group1 = VGroup(title, topic, member_texts)
-        self.play(FadeOut(group1))
+        self.play(FadeOut(group1, shift=LEFT*7))
         self.next_slide()
 
         # Hình 1
@@ -101,13 +102,13 @@ class Intro(Slide):
         self.wait(0.5)
         
         # Root node
-        root = self.create_box("Generative models", BLUE_B, scale=0.75)
+        root = self.create_box("Generative models", BLUE_B, scale=0.75,)
         root.move_to(UP * 2)
         
         
         # Level 1 boxes
-        explicit = self.create_box("Explicit density", BLUE_C, scale=0.75)
-        implicit = self.create_box("Implicit density", BLUE_C, scale=0.75)
+        explicit = self.create_box("Explicit density", BLUE_C, scale=0.75, )
+        implicit = self.create_box("Implicit density", BLUE_C, scale=0.75, )
         
         explicit.move_to(LEFT * 3.5 + UP * 0.2)
         implicit.move_to(RIGHT * 3.5 + UP * 0.2)
@@ -120,7 +121,7 @@ class Intro(Slide):
         arrow2 = Arrow(line2.get_right()+LEFT*0.01, implicit.get_top(), buff=-0.5, stroke_width=3)
         
         # Left and right labels
-        left_label = Paragraph("Model can\ncompute P(x)", font_size=20, line_spacing=0.5,alignment="center")
+        left_label = Paragraph("Model can\ncompute P(x)", font_size=20, line_spacing=0.5,alignment="center", )
         left_label.next_to(arrow1, UP, buff=0.5)
         
         right_label = Paragraph("Cannot compute p(x) but\ncan sample from P(x)", font_size=20, line_spacing=0.5,alignment="center")
@@ -137,13 +138,13 @@ class Intro(Slide):
         self.play(GrowFromPoint(mid_line_root,root.get_bottom()), run_time=0.5)
         self.play(GrowFromPoint(line1, mid_line_root.get_bottom()),
                   GrowFromPoint(line2,mid_line_root.get_bottom()),
-                  run_time = 0.7
+                  run_time = 0.5
                   )
         self.play(
             GrowArrow(arrow1), GrowArrow(arrow2),
             Write(left_label),Write(right_label),
             FadeIn(explicit), FadeIn(implicit),
-            run_time = 1
+            run_time = 0.7
         )
         self.wait(0.5)
         
@@ -215,13 +216,13 @@ class Intro(Slide):
             GrowArrow(arrow3), GrowArrow(arrow4),
             Write(left_side_label1), 
             Write(left_side_label2),
-            run_time = 1
+            run_time = 0.7
         )
         self.play(
             FadeIn(tractable), FadeIn(approximate),
             Write(autoregressive),
             Write(vae),
-            run_time = 1
+            run_time = 0.5
         )
 
         self.next_slide()
@@ -236,7 +237,7 @@ class Intro(Slide):
             GrowArrow(arrow5), GrowArrow(arrow6),
             Write(right_side_label1), 
             Write(right_side_label2),
-            run_time = 1
+            run_time = 0.7
             
         )
         self.play(
@@ -244,7 +245,7 @@ class Intro(Slide):
             FadeIn(direct), FadeIn(indirect),
             Write(gan),
             Write(diffusion), 
-            run_time = 1
+            run_time = 0.5
         )
 
         self.next_slide()
@@ -256,55 +257,38 @@ class Intro(Slide):
 
         # ================= TITLE ==================
         title = Text("Generative Model Architectures Overview", font_size=35).to_edge(UP)
-        self.play(Write(title))
+        self.play(FadeIn(title))
         self.next_slide()
 
         # ================= GAN =====================
         gan_title = T("GAN: Adversarial\ntraining", 20, color=WHITE).next_to(title, DOWN, buff=1).to_edge(LEFT).shift(RIGHT)
         gan = ImageMobject(r"./Imgs/image1").next_to(gan_title, RIGHT, buff=2)
-        # self.play(FadeIn(gan_title))
-        # self.play(FadeIn(gan))
-        # self.next_slide()
-
+        
         vae = ImageMobject(r"./Imgs/image2").next_to(gan, DOWN, buff=0)
         vae_title = T("VAE: Maximize\nvariational lower bound", 20, color=WHITE).next_to(vae, LEFT, buff=1.5)
-        # self.play(FadeIn(vae_title))
-        # self.play(FadeIn(vae))
-        # self.next_slide()
-
+        
         f = ImageMobject(r"./Imgs/image3").next_to(vae, DOWN, buff=0)
         f_title = T("Flow-based models:\ninvertible transform of\ndistributions", 20, color=WHITE).next_to(f, LEFT, buff=1.5)
-        # self.play(FadeIn(f_title))
-        # self.play(FadeIn(f))
-        # self.next_slide()
 
         dm = ImageMobject(r"./Imgs/image4").next_to(f, DOWN, buff=0)
         dm_title = T("Diffusion models: gradually\n add Gaussiannoise\n and then reverse", 20, color=WHITE).next_to(dm, LEFT, buff=1.3)
-        # self.play(FadeIn(dm_title))
-        # self.play(FadeIn(dm))
-        # self.next_slide()
 
-        
         all_contents = Group(
             gan_title, gan,
             vae_title, vae,
             f_title, f,
             dm_title, dm, title
         )
-        self.play(FadeIn(gan_title))
-        self.play(FadeIn(gan))
+        self.play(FadeIn(gan_title,gan))
         self.next_slide() 
 
-        self.play(FadeIn(vae_title))
-        self.play(FadeIn(vae))
+        self.play(FadeIn(vae_title,vae))
         self.next_slide()
 
-        self.play(FadeIn(f_title))
-        self.play(FadeIn(f))
+        self.play(FadeIn(f_title,f))
         self.next_slide()
 
-        self.play(FadeIn(dm_title))
-        self.play(FadeIn(dm))
+        self.play(FadeIn(dm_title,dm))
         self.next_slide()
 
         self.play(FadeOut(all_contents))
@@ -347,35 +331,28 @@ class Intro(Slide):
         all_objects = Group(main_group, img_loss).move_to(ORIGIN).scale(2).shift(RIGHT*1)
 
         title = Text("Variational Autoencoder (VAE)", font_size=40, color=BLUE).to_edge(UP)
-        self.play(Write(title))
-        self.next_slide()
-
-        self.play(FadeIn(img_input))
+        self.play(FadeIn(title))
         self.next_slide()
 
         img_encoder.next_to(img_input,RIGHT,buff=0)
-        self.play(FadeIn(img_encoder))
-        self.next_slide()
 
         img_latent.next_to(img_encoder,RIGHT,buff=0)
-        self.play(FadeIn(img_latent))
-        self.next_slide()
 
         img_decoder.next_to(img_latent,RIGHT,buff=0)
-        self.play(FadeIn(img_decoder))
-        self.next_slide()
 
         img_output.next_to(img_decoder,RIGHT,buff=0)
-        self.play(FadeIn(img_output))
-        self.next_slide()
-
+      
         img_loss.next_to(main_group, DOWN, buff=0).scale(0.63)
-        self.play(FadeIn(img_loss, shift=UP))
-        self.next_slide()
-
+        
+        self.play(LaggedStart(
+                    FadeIn(img_input), FadeIn(img_encoder),
+                    FadeIn(img_latent), FadeIn(img_decoder),
+                    FadeIn(img_output), FadeIn(img_loss, shift=UP),
+                    lag_ratio=0.2
+                    ))
         self.play(FadeOut(all_objects), FadeOut(title))
 
-         # ===================================================================
+        # ===================================================================
         # PHẦN 4: CHI TIẾT GAN (Đã bỏ mũi tên)
         # ===================================================================
         
@@ -403,19 +380,26 @@ class Intro(Slide):
         g_real.next_to(g_disc,LEFT,buff=0).shift(UP*1.5)
         g_sample.next_to(g_real,LEFT,buff=0)
         gan_main_title = T("Generative Adversarial Network (GAN)", 36, BLUE).to_edge(UP)
-        self.play(Write(gan_main_title))
+        self.play(FadeIn(gan_main_title))
         self.next_slide()
         
         high_main_title = T("High\nDimensional\nSample", 20, WHITE).next_to(g_sample,LEFT)
-        self.play(Write(high_main_title))
-        self.play(FadeIn(g_sample))
-        self.play(FadeIn(g_real))
+        self.play(LaggedStart(
+                            FadeIn(high_main_title), 
+                            FadeIn(g_sample), 
+                            FadeIn(g_real),
+                            lag_ratio=0.2
+                            ))
         self.next_slide()
+
         Low_main_title = T("Low\nDimensional\nLatent", 20, WHITE).next_to(g_latent,LEFT)
-        self.play(Write(Low_main_title))
-        self.play(FadeIn(g_latent))
-        self.play(FadeIn(g_gen))
-        self.play(FadeIn(g_fake))
+        self.play(LaggedStart(
+            FadeIn(Low_main_title),
+            FadeIn(g_latent),
+            FadeIn(g_gen),
+            FadeIn(g_fake),
+            lag_ratio=0.2
+        ))
         self.next_slide()
 
         self.play(FadeIn(g_disc))
@@ -434,7 +418,7 @@ class Intro(Slide):
         
         # --- 1. TIÊU ĐỀ ---
         title = Text("Diffusion Models", font_size=48, weight=BOLD).to_edge(UP)
-        self.play(Write(title))
+        self.play(Write(title), run_time=0.5)
         
         # --- 2. CÁC NÚT (NODES) ---
         # Tạo hai vòng tròn đại diện cho x_{t-1} và x_t
@@ -481,8 +465,8 @@ class Intro(Slide):
         label_reverse.next_to(arrow_reverse, DOWN, buff=0.1)
 
         # Animation vẽ mũi tên
-        self.play(Create(arrow_forward), Write(label_forward))
-        self.play(Create(arrow_reverse), Write(label_reverse))
+        self.play(Create(arrow_forward), Write(label_forward), run_time=0.5)
+        self.play(Create(arrow_reverse), Write(label_reverse), run_time=0.5)
 
         # --- 4. PHÂN PHỐI GAUSSIAN (CENTER) ---
         # Tạo hệ trục ảo để vẽ đồ thị (ẩn trục đi)
