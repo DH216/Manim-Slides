@@ -45,7 +45,7 @@ class Intro(Slide):
 
         # Danh sách thành viên
         members = [
-            "24520402 - Trần Nguyễn Hà Duy",
+            "24520402 - Trần Nguyên Hà Duy",
             "24520501 - Nguyễn Duy Hiếu",
             "24520504 - Nguyễn Minh Hiếu",
             "24520491 - Lê Đình Hiếu",
@@ -66,7 +66,7 @@ class Intro(Slide):
         
 
         group1 = VGroup(title, topic, member_texts)
-        self.play(FadeOut(group1, shift=LEFT*7))
+        self.play(FadeOut(group1))
         self.next_slide()
 
         # Hình 1
