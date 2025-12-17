@@ -77,16 +77,13 @@ class tltk(Slide):
         self.play(FadeIn(title_part1))
         self.play(FadeIn(subtitle_part1, shift=RIGHT))
         
-        self.play(FadeIn(ref1), run_time=1.5)
-        self.wait(0.2)
+        self.play(FadeIn(ref1))
         
-        self.play(FadeIn(ref2), run_time=1.5)
-        self.wait(0.2)
+        self.play(FadeIn(ref2))
         
-        self.play(FadeIn(ref3), run_time=1.5)
-        self.wait(0.2)
+        self.play(FadeIn(ref3))
         
-        self.play(FadeIn(ref4), run_time=1.5)
+        self.play(FadeIn(ref4))
         
         self.next_slide()
 
