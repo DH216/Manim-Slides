@@ -3,6 +3,23 @@ from manim_slides import Slide
 
 class tltk(Slide):
     def construct(self):
+        self.slide_count = 1  # Số trang bắt đầu
+
+        # 1. Hiển thị số trang ban đầu
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
+        def next_step():
+            self.next_slide()  # Vẫn dừng slide như bình thường
+            
+            # Nhưng chạy tiếp thì sẽ tăng số trang
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
+
         font_name = "Arial"
         
         # --- Kích thước ---
@@ -85,7 +102,7 @@ class tltk(Slide):
         
         self.play(FadeIn(ref4))
         
-        self.next_slide()
+        next_step()
 
         # --- CHUYỂN CẢNH: QUAN TRỌNG ---
         self.play(
@@ -125,7 +142,7 @@ class tltk(Slide):
         
         # --- TRÌNH CHIẾU PHẦN 2 ---
         self.play(FadeIn(group_part2), run_time=2)
-        self.next_slide()
+        next_step()
         
         # Kết thúc
         self.play(FadeOut(group_part2))

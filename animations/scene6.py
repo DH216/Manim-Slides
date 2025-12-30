@@ -10,7 +10,22 @@ sys.path.append("../")
 
 class Scene2_6(MovingCameraScene, Slide):
     def construct(self):
+        self.slide_count = 1  # Số trang bắt đầu
 
+        # 1. Hiển thị số trang ban đầu
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
+        def next_step():
+            self.next_slide()  # Vẫn dừng slide như bình thường
+            
+            # Nhưng chạy tiếp thì sẽ tăng số trang
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
         tex_to_color_map = {
             r"\theta": BLUE,
         }
@@ -146,7 +161,7 @@ class Scene2_6(MovingCameraScene, Slide):
             tex_to_color_map=tex_to_color_map,
         ).next_to(q_posterior_arrow, DOWN, buff=0.1)
 
-        self.next_slide()
+        next_step()
         self.play(
             FadeIn(xt1_circle, xt1_image, xt1_image_rect, xt1_label, xt1_img_line)
         )
@@ -175,7 +190,7 @@ class Scene2_6(MovingCameraScene, Slide):
             run_time=1.5,
         )
 
-        self.next_slide()
+        next_step()
         
         self.play(Indicate(VGroup(x0_circle, x0_label), color=WHITE))
         self.play(Indicate(VGroup(x0_circle, x0_label), color=WHITE))
@@ -243,7 +258,7 @@ class Scene2_6(MovingCameraScene, Slide):
             color=WHITE,
         ).shift(0.6 * UP + 0.2 * RIGHT)
 
-        self.next_slide()
+        next_step()
         # ========================= NV 3 ============================
         self.play(FadeOut(*self.mobjects)) 
         # --- Cấu hình font chữ ---
@@ -318,26 +333,26 @@ class Scene2_6(MovingCameraScene, Slide):
 
         # Slide 1: Hiện công thức đầu tiên (equation)
 
-        self.next_slide()
+        next_step()
 
         self.play(Write(equation))
-        self.next_slide() 
+        next_step() 
 
         # Slide 2: Hiện nhóm Bayes
         self.play(Write(group_bayes))
-        self.next_slide()
+        next_step()
 
         # Slide 3: Hiện nhóm Gaussian ngắn
         self.play(Write(group_gaussian_intro))
-        self.next_slide()
+        next_step()
 
         # Slide 4: Hiện nhóm Gaussian chi tiết
         self.play(Write(eq_detailed_1))
-        self.next_slide()
+        next_step()
         self.play(Write(eq_detailed_2))
-        self.next_slide()
+        next_step()
         self.play(FadeOut(equation),FadeOut(group_bayes),FadeOut(group_gaussian_intro),FadeOut(eq_detailed_1),FadeOut(eq_detailed_2))
-        self.next_slide()
+        next_step()
         # ==============================================================================
         # 1. CÔNG THỨC TỪ ẢNH TRƯỚC (Log-likelihood)
         # ==============================================================================
@@ -382,19 +397,19 @@ class Scene2_6(MovingCameraScene, Slide):
 
         # Slide 1: Hiện dòng Log-likelihood
         self.play(Write(eq_log_posterior))
-        self.next_slide()
+        next_step()
 
         # Slide 2: Hiện dòng Khai triển
         self.play(Write(eq_expansion))
-        self.next_slide()
+        next_step()
 
         # Slide 3: Hiện dòng Nhóm (A, B)
         self.play(Write(eq_grouped))
-        self.next_slide()
+        next_step()
 
         # Slide 4: Fade out toàn bộ
         self.play(FadeOut(all_content))
-        self.next_slide()# ==============================================================================
+        next_step()# ==============================================================================
 # ==============================================================================
         # 1. PHẦN CŨ (Tính nghịch đảo phương sai)
         # ==============================================================================
@@ -464,30 +479,30 @@ class Scene2_6(MovingCameraScene, Slide):
         # ==============================================================================
 
         # Slide 1-5: Nội dung cũ
-        self.next_slide()
+        next_step()
 
         self.play(Write(header_group))
-        self.next_slide()
+        next_step()
 
         self.play(Write(eq_step1))
-        self.next_slide()
+        next_step()
 
         self.play(Write(eq_step2))
-        self.next_slide()
+        next_step()
 
         self.play(Write(eq_step3_full))
-        self.next_slide()
+        next_step()
 
         self.play(Write(eq_step4))
-        self.next_slide()
+        next_step()
 
         # Slide 6: Hiện dòng chữ "Suy ra..."
         self.play(Write(text_conclusion))
-        self.next_slide()
+        next_step()
 
         # Slide 7: Hiện công thức cuối cùng
         self.play(Write(eq_final))
-        self.next_slide()
+        next_step()
         
         # Slide 8: Fade Out
         self.play(FadeOut(all_content))
@@ -564,23 +579,23 @@ class Scene2_6(MovingCameraScene, Slide):
 
         # Slide 1: Hiện tiêu đề
         self.play(Write(header_group))
-        self.next_slide()
+        next_step()
 
         # Slide 2: Hiện dòng thế số
         self.play(Write(eq_mean_step1))
-        self.next_slide()
+        next_step()
 
         # Slide 3: Hiện kết quả rút gọn
         self.play(Write(eq_mean_step2))
-        self.next_slide()
+        next_step()
 
         # Slide 4: Hiện dòng chữ Kết luận
         self.play(Write(text_conclusion))
-        self.next_slide()
+        next_step()
 
         # Slide 5: Hiện công thức cuối cùng
         self.play(Write(eq_final_distribution))
-        self.next_slide()
+        next_step()
         
         # Slide 6: Fade out
         self.play(FadeOut(all_content))
@@ -598,7 +613,7 @@ class Scene2_6(MovingCameraScene, Slide):
         # ===============================================================
         # Start the axes small and zoomed out
 
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(
                 FadeIn(ax, p_plot, q_plot),
@@ -608,7 +623,7 @@ class Scene2_6(MovingCameraScene, Slide):
             run_time=4,
         )
 
-        self.next_slide()
+        next_step()
         
         self.play(Write(p_plot_label))
         self.play(Write(q_plot_label))
@@ -623,7 +638,7 @@ class Scene2_6(MovingCameraScene, Slide):
             font_size=10,
         ).move_to(q_plot_label, aligned_edge=LEFT)
 
-        self.next_slide()
+        next_step()
         self.play(Write(q_expression[1]))
 
         q_gaussian = ax.plot(
@@ -633,7 +648,7 @@ class Scene2_6(MovingCameraScene, Slide):
             stroke_width=1,
         )
 
-        self.next_slide()
+        next_step()
         self.play(Transform(q_plot, q_gaussian))
 
         p_gaussian = ax.plot(
@@ -651,7 +666,7 @@ class Scene2_6(MovingCameraScene, Slide):
             tex_to_color_map=tex_to_color_map,
         ).move_to(p_plot_label, aligned_edge=LEFT)
 
-        self.next_slide()
+        next_step()
 
         self.play(
             LaggedStart(
@@ -688,7 +703,7 @@ class Scene2_6(MovingCameraScene, Slide):
             tex_to_color_map=tex_to_color_map,
         ).next_to(q_line, DOWN, buff=0.1)
 
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(Create(p_line), Write(p_line_label), lag_ratio=0.9),
             run_time=1.5,
@@ -711,7 +726,7 @@ class Scene2_6(MovingCameraScene, Slide):
         ).next_to(p_spread, UP, buff=0.1)
         p_spread_label.add_updater(lambda m: m.next_to(p_spread, UP, buff=0.1))
 
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(Create(p_spread), Write(p_spread_label), lag_ratio=0.9),
             run_time=1.5,
@@ -732,7 +747,7 @@ class Scene2_6(MovingCameraScene, Slide):
             tex_to_color_map=tex_to_color_map,
         ).next_to(p_spread, UP, buff=0.1)
 
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(
                 Transform(p_expression[3:], p_expression_2[3:]),
@@ -756,7 +771,7 @@ class Scene2_6(MovingCameraScene, Slide):
             stroke_width=1,
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(
             FadeOut(p_spread, p_spread_label),
@@ -775,7 +790,7 @@ class Scene2_6(MovingCameraScene, Slide):
             tex_to_color_map=tex_to_color_map,
         ).next_to(p_expression, UP, buff=0.05, aligned_edge=LEFT)
 
-        self.next_slide()
+        next_step()
         self.play(Write(kl_expression))
 
         # Show that we try to match all distributions at the same time
@@ -937,7 +952,7 @@ class Scene2_6(MovingCameraScene, Slide):
         )
         # =================== NV 4 ======================================
 
-        self.next_slide()
+        next_step()
         origin_pos = self.camera.frame.copy()
         self.play(self.camera.frame.animate.scale(1 / 0.3).shift(UP*7))
         # ===============================================================
@@ -988,18 +1003,18 @@ class Scene2_6(MovingCameraScene, Slide):
         # ==============================================================================
 
         # Slide 1: Hiện công thức tổng quát
-        self.next_slide()
+        next_step()
 
         self.play(Write(eq_general))
-        self.next_slide()
+        next_step()
 
         # Slide 2: Hiện bước thay thế (Dòng rút gọn 1)
         self.play(Write(eq_simplified_step1))
-        self.next_slide()
+        next_step()
 
         # Slide 3: Hiện kết quả cuối (Dòng rút gọn 2)
         self.play(Write(eq_simplified_step2))
-        self.next_slide()
+        next_step()
         
         # Slide 4: Fade Out
         self.play(FadeOut(all_content))
@@ -1009,7 +1024,7 @@ class Scene2_6(MovingCameraScene, Slide):
 
 
         # Reset camera position
-        self.next_slide()
+        next_step()
 
         self.play(
             self.camera.frame.animate.scale(1 / 0.3).move_to(ORIGIN),
@@ -1028,7 +1043,7 @@ class Scene2_6(MovingCameraScene, Slide):
         )
 
         # Animate 3 times, each time bringing p closer to q
-        self.next_slide()
+        next_step()
         for i in range(3):
             # For each iteration, move p means closer to q means using weighted average
             weight = (i + 1) / 3
@@ -1065,7 +1080,7 @@ class Scene2_6(MovingCameraScene, Slide):
                 )
             )
 
-        self.next_slide()
+        next_step()
         self.play(FadeOut(*self.mobjects, shift=0.5 * DOWN))
 
         self.wait(1)

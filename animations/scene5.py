@@ -5,9 +5,45 @@ import sys
 
 sys.path.append("../")
 
+# def construct(self):
+#         # =========================================================================
+#         # PHẦN CẤU HÌNH SỐ TRANG (Được thêm vào, không ảnh hưởng code cũ)
+#         # =========================================================================
+#         self.slide_count = 1  # Số trang bắt đầu
+        
+#         # 1. Hiển thị số trang ban đầu
+#         self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+#         self.page_number.to_corner(DR, buff=0.5)
+#         self.add(self.page_number) 
 
+#         # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
+#         def next_step():
+#             self.next_slide()  # Vẫn dừng slide như bình thường
+            
+#             # Nhưng chạy tiếp thì sẽ tăng số trang
+#             self.slide_count += 1
+#             new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+#             new_number.to_corner(DR, buff=0.5)
+#             self.page_number.become(new_number)
 class Scene2_5(Slide):
     def construct(self):
+        
+        self.slide_count = 24  # Số trang bắt đầu
+
+        # 1. Hiển thị số trang ban đầu
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
+        def next_step():
+            self.next_slide()  # Vẫn dừng slide như bình thường
+            
+            # Nhưng chạy tiếp thì sẽ tăng số trang
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
 
         tex_to_color_map = {
             r"\theta": BLUE,
@@ -37,7 +73,7 @@ class Scene2_5(Slide):
             elbo_label,
         )
         self.wait(0.5)
-        self.next_slide()
+        next_step()
 
         elbo_complete = MathTex(
             r"\mathbb{E}_q \left[",
@@ -116,21 +152,21 @@ class Scene2_5(Slide):
         )
 
         # SLIDE 1
-        self.next_slide() 
+        next_step() 
 
         # SLIDE 2
         self.play(TransformFromCopy(eq1[1:], eq2), run_time=1)
         self.wait(0.5)
-        self.next_slide()
+        next_step()
 
         # SLIDE 3
         self.play(FadeIn(eq3, shift=DOWN * 0.2), run_time=1)
-        self.next_slide()
+        next_step()
 
         # SLIDE 4
         self.play(FadeIn(eq4, shift=DOWN * 0.2), run_time=1)
         
-        self.next_slide() 
+        next_step() 
         
         COLOR_MATH = WHITE
         COLOR_BOX = WHITE # Màu của khung viền
@@ -149,11 +185,11 @@ class Scene2_5(Slide):
         new_equation.to_edge(RIGHT, buff=1.0) # Căn phải
 
         # --- 2. HOẠT CẢNH DI CHUYỂN VÀ HIỆN CÔNG THỨC ---
-        self.next_slide()
+        next_step()
 
         # Di chuyển công thức cũ sang trái
         self.play(equations.animate.to_edge(LEFT, buff=1.0), run_time=1)
-        self.next_slide()
+        next_step()
 
         # Hiện công thức mới bên phải
         self.play(Write(new_equation), run_time=1)
@@ -168,7 +204,7 @@ class Scene2_5(Slide):
         self.wait(0.5)
 
         # Dừng lại để thuyết trình về công thức được đóng khung
-        self.next_slide()
+        next_step()
         top_group = VGroup(eq1, eq2, eq3, eq4)
         eq5 = MathTex(
             r"= \mathbb{E}_q \Bigg[ -\log \frac{p(\mathbf{x}_T)}{q(\mathbf{x}_T|\mathbf{x}_0)} - \sum_{t>1} \log \frac{p_\theta(\mathbf{x}_{t-1}|\mathbf{x}_t)}{q(\mathbf{x}_{t-1}|\mathbf{x}_t, \mathbf{x}_0)} - \log p_\theta(\mathbf{x}_0|\mathbf{x}_1) \Bigg]",
@@ -198,12 +234,12 @@ class Scene2_5(Slide):
         # Bước 1: Hiện lại 4 công thức cũ (dạng Recap)
         # Bước 2: Viết công thức 5
         self.play(Write(eq5), run_time=1.5)
-        self.next_slide()
+        next_step()
 
         # Bước 3: Biến đổi sang công thức 6 (KL Divergence)
         self.play(TransformFromCopy(eq5, eq6), run_time=2.0)
         self.wait(0.5)
-        self.next_slide()
+        next_step()
         
         # Kết thúc
         self.play(FadeOut(top_group), FadeOut(eq5),FadeOut(new_equation),FadeOut(box))
@@ -283,7 +319,7 @@ class Scene2_5(Slide):
             kl_rect, LEFT, aligned_edge=UP, buff=0.2
         )
         self.wait(0.5)
-        self.next_slide()
+        next_step()
 
         self.play(
             LaggedStart(
@@ -317,7 +353,7 @@ class Scene2_5(Slide):
             sheen_factor=0.7,
         ).move_to(kl_bar, aligned_edge=DOWN)
 
-        self.next_slide()
+        next_step()
 
         self.play(
             LaggedStart(
@@ -342,7 +378,7 @@ class Scene2_5(Slide):
             sheen_factor=0.7,
         ).move_to(kl_bar, aligned_edge=DOWN)
 
-        self.next_slide()
+        next_step()
 
         self.play(
             LaggedStart(
@@ -367,7 +403,7 @@ class Scene2_5(Slide):
             sheen_factor=0.7,
         ).move_to(kl_bar, aligned_edge=DOWN)
 
-        self.next_slide()
+        next_step()
 
         self.play(
             LaggedStart(
@@ -376,7 +412,7 @@ class Scene2_5(Slide):
             run_time=1.5,
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(
             LaggedStart(
@@ -421,7 +457,7 @@ class Scene2_5(Slide):
             buff=0.1,
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(Create(rect_1))
 
@@ -436,7 +472,7 @@ class Scene2_5(Slide):
             color=RED,
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(LaggedStart(FadeOut(rect_1), Create(cross_1), lag_ratio=0.3))
 
@@ -487,7 +523,7 @@ class Scene2_5(Slide):
             .shift(LEFT * 2)
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(Create(rect_2))
 
@@ -510,7 +546,7 @@ class Scene2_5(Slide):
             run_time=2,
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(FadeOut(vg))
         very_small = Tex("Very Small", font_size=32).next_to(rect_2, DOWN, buff=0.5)
@@ -521,11 +557,11 @@ class Scene2_5(Slide):
             color=RED,
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(LaggedStart(FadeOut(rect_2), Create(cross_2), lag_ratio=0.3))
 
-        self.next_slide()
+        next_step()
 
         self.play(
             LaggedStart(
@@ -547,12 +583,12 @@ class Scene2_5(Slide):
             run_time=2,
         )
 
-        self.next_slide()
+        next_step()
 
         self.play(Circumscribe(elbo_simplified[4:7], color=WHITE, run_time=1.5))
         self.wait(0.5)
 
-        self.next_slide()
+        next_step()
 
         self.play(Circumscribe(elbo_simplified[2], color=WHITE, run_time=1.5))
         self.wait(0.5)

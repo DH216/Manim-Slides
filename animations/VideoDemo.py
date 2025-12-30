@@ -49,6 +49,23 @@ class VideoMobject(ImageMobject):
 # ==============================================================================
 class video(Slide):
     def construct(self):
+        self.slide_count = 1  # Số trang bắt đầu
+
+        # 1. Hiển thị số trang ban đầu
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
+        def next_step():
+            self.next_slide()  # Vẫn dừng slide như bình thường
+            
+            # Nhưng chạy tiếp thì sẽ tăng số trang
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
+
         # Đường dẫn file (Bạn nhớ kiểm tra kỹ đường dẫn nhé)
         image_path = r".\Imgs\LastScene\img1.png"
         video_path = r".\Imgs\LastScene\video1.mov"
@@ -62,7 +79,7 @@ class video(Slide):
             return
 
         # Dừng chờ bấm nút Next
-        self.next_slide() 
+        next_step() 
 
         # --- BƯỚC 2: CHUYỂN SANG VIDEO ---
         try:
@@ -77,7 +94,7 @@ class video(Slide):
 
         # Xóa ảnh, thêm video ngay lập tức
         self.play(FadeIn(image))
-        self.next_slide()
+        next_step()
         self.remove(image)
         self.add(video_obj)
         
@@ -86,4 +103,4 @@ class video(Slide):
         self.wait(video_obj.duration)
         video_obj.stop_video()
         
-        self.next_slide()
+        next_step()

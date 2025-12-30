@@ -7,6 +7,22 @@ sys.path.append("../")
 
 class Scene2_7(MovingCameraScene,Slide):
     def construct(self):
+        self.slide_count = 1  # Số trang bắt đầu
+
+        # 1. Hiển thị số trang ban đầu
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
+        def next_step():
+            self.next_slide()  # Vẫn dừng slide như bình thường
+            
+            # Nhưng chạy tiếp thì sẽ tăng số trang
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
 
         # KL into L2
         self.next_section(skip_animations=False)
@@ -38,10 +54,10 @@ class Scene2_7(MovingCameraScene,Slide):
             elbo_kl_cp.get_bottom(), elbo_l2.get_top(), buff=0.1, color=WHITE
         )
 
-        self.next_slide()
+        next_step()
         self.play(Write(elbo_kl))
         
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(
                 elbo_kl.animate.shift(2 * UP), GrowArrow(arrow_elbo), lag_ratio=0.7
@@ -50,11 +66,11 @@ class Scene2_7(MovingCameraScene,Slide):
         )
         self.play(Write(elbo_l2))
 
-        self.next_slide()
+        next_step()
         self.play(Circumscribe(elbo_l2[3], color=WHITE))
         self.play(Circumscribe(elbo_l2[1], color=WHITE))
 
-        self.next_slide()
+        next_step()
         self.play(FadeOut(elbo_kl, arrow_elbo))
 
         mutilde_expression = MathTex(
@@ -82,7 +98,7 @@ class Scene2_7(MovingCameraScene,Slide):
             RIGHT, buff=1.0
         ).next_to(elbo_l2, UP, buff=1.5)
 
-        self.next_slide()
+        next_step()
         self.play(Write(mutilde_expression))
 
         x0_img = (
@@ -118,7 +134,7 @@ class Scene2_7(MovingCameraScene,Slide):
         self.play(FadeIn(x0_img, x0_rect, x0_label))
         self.play(FadeIn(xt_img, xt_rect, xt_label))
 
-        self.next_slide()
+        next_step()
         self.play(FadeOut(x0_img, x0_rect, x0_label, xt_img, xt_rect, xt_label))
 
         self.play(
@@ -137,7 +153,7 @@ class Scene2_7(MovingCameraScene,Slide):
             tex_to_color_map=tex_to_color_map,
         ).move_to(reparam.get_center())
 
-        self.next_slide()
+        next_step()
         self.play(Transform(reparam, reparam_2))
 
         mutilde_reparam = MathTex(
@@ -147,7 +163,7 @@ class Scene2_7(MovingCameraScene,Slide):
             tex_to_color_map=tex_to_color_map,
         ).next_to(elbo_l2, UP, buff=1.5)
 
-        self.next_slide()
+        next_step()
         self.play(
             ReplacementTransform(VGroup(mutilde_expression, reparam), mutilde_reparam)
         )
@@ -183,7 +199,7 @@ class Scene2_7(MovingCameraScene,Slide):
         ).next_to(noise_img, DOWN, buff=0.1)
         self.play(FadeIn(xt_img, xt_rect, xt_label, noise_img, noise_rect, noise_label))
 
-        self.next_slide()
+        next_step()
         self.play(
             FadeOut(xt_img, xt_rect, xt_label, noise_img, noise_rect, noise_label)
         )
@@ -204,7 +220,7 @@ class Scene2_7(MovingCameraScene,Slide):
             RIGHT, buff=1.0
         ).next_to(elbo_l2, UP, buff=1.5)
 
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(
                 mutilde_reparam.animate.move_to(mutilde_reparam_cp.get_center()),
@@ -221,7 +237,7 @@ class Scene2_7(MovingCameraScene,Slide):
             tex_to_color_map=tex_to_color_map,
         ).move_to(elbo_l2)
 
-        self.next_slide()
+        next_step()
         self.play(Transform(elbo_l2, epsilon_loss))
 
         self.wait(3)
@@ -229,11 +245,11 @@ class Scene2_7(MovingCameraScene,Slide):
             elbo_l2, UP, buff=1.5
         )
 
-        self.next_slide()
+        next_step()
         self.play(FadeOut(mutilde_reparam, mutheta_reparam))
         self.play(Write(final_loss))
         
-        self.next_slide()
+        next_step()
         final_loss_underline = Underline(final_loss, color=WHITE)
         self.play(ShowPassingFlash(final_loss_underline, time_width=0.5))
 
@@ -425,7 +441,7 @@ class Scene2_7(MovingCameraScene,Slide):
             step6_title,
         )
 
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(
                 Create(step1_rect),
@@ -437,7 +453,7 @@ class Scene2_7(MovingCameraScene,Slide):
 
         self.play(FadeIn(eq_step1))
 
-        self.next_slide()
+        next_step()
         self.play(GrowArrow(arrows[0]))
 
         self.play(
@@ -451,7 +467,7 @@ class Scene2_7(MovingCameraScene,Slide):
 
         self.play(FadeIn(eq_step2))
 
-        self.next_slide()
+        next_step()
         self.play(GrowArrow(arrows[1]))
 
         self.play(
@@ -464,7 +480,7 @@ class Scene2_7(MovingCameraScene,Slide):
         )
         self.play(FadeIn(eq_step3))
 
-        self.next_slide()
+        next_step()
         self.play(GrowArrow(arrows[2]))
 
         self.play(
@@ -477,7 +493,7 @@ class Scene2_7(MovingCameraScene,Slide):
         )
         self.play(FadeIn(eq_step4))
 
-        self.next_slide()
+        next_step()
         self.play(GrowArrow(arrows[3]))
 
         self.play(
@@ -490,7 +506,7 @@ class Scene2_7(MovingCameraScene,Slide):
         )
         self.play(FadeIn(eq_step5))
 
-        self.next_slide()
+        next_step()
         self.play(GrowArrow(arrows[4]))
 
         self.play(
@@ -506,7 +522,7 @@ class Scene2_7(MovingCameraScene,Slide):
         # Very Last simplification
         self.next_section(skip_animations=False)
 
-        self.next_slide()
+        next_step()
         self.play(
             eq_step6.animate.move_to(ORIGIN).scale(1.55),
             FadeOut(
@@ -523,7 +539,7 @@ class Scene2_7(MovingCameraScene,Slide):
             ),
         )
 
-        self.next_slide()
+        next_step()
         cross_sum = Cross(eq_step6[1], color=WHITE, stroke_width=2)
         self.play(Create(cross_sum))
 
@@ -534,7 +550,7 @@ class Scene2_7(MovingCameraScene,Slide):
             tex_to_color_map=tex_to_color_map,
         ).move_to(eq_step6)
 
-        self.next_slide()
+        next_step()
         self.play(
             LaggedStart(
                 FadeOut(cross_sum), 
@@ -543,7 +559,7 @@ class Scene2_7(MovingCameraScene,Slide):
             )
         )
 
-        self.next_slide()
+        next_step()
         self.play(FadeOut(eq_step6, shift=0.5 * DOWN))
 
         self.wait(1)
