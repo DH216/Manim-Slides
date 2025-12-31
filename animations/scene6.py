@@ -8,13 +8,26 @@ import sys
 sys.path.append("../")
 
 
-class Scene2_6(MovingCameraScene, Slide):
+class Scene2_6(Slide,MovingCameraScene):
     def construct(self):
-        self.slide_count = 1  # Số trang bắt đầu
+        self.slide_count = 26  # Số trang bắt đầu
+        
 
         # 1. Hiển thị số trang ban đầu
         self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
-        self.page_number.to_corner(DR, buff=0.5)
+        #self.page_number.to_corner(DR, buff=0.5)
+        base_width = self.page_number.width
+        self.page_number.add_updater(
+        lambda m: (
+        m.set_width(
+            base_width * self.camera.frame.get_width() / config.frame_width
+        )
+        .move_to(
+            self.camera.frame.get_corner(DR) + UP*0.3*(m.width/base_width) + LEFT*0.3*(m.width/base_width)
+        )
+    )
+)
+
         self.add(self.page_number) 
 
         # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
@@ -260,7 +273,16 @@ class Scene2_6(MovingCameraScene, Slide):
 
         next_step()
         # ========================= NV 3 ============================
-        self.play(FadeOut(*self.mobjects)) 
+        #self.play(FadeOut(*self.mobjects)) 
+        self.play(
+            FadeOut(xt1_circle, xt1_image, 
+                   xt1_image_rect, xt1_label, xt1_img_line,q_arrow,q_label,
+                   xt_circle, xt_image, xt_image_rect, xt_label, xt_img_line,
+                   p_arrow,p_label,x0xt_line,x0_circle, x0_image, x0_image_rect, x0_label, x0_img_line,
+                   q_posterior_arrow,q_posterior_label,
+                   elbo_simplified
+                   )
+        )
         # --- Cấu hình font chữ ---
         # Lưu ý: Không đặt font_size cố định ở đây nữa để dùng scale sau
         font_name = "Arial" 
