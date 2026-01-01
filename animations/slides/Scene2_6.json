@@ -21,8 +21,20 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\80049e423e6a6128c2c8f6f5fc23ddfbe0357b1487fd280950c435824f0d43b2.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\80049e423e6a6128c2c8f6f5fc23ddfbe0357b1487fd280950c435824f0d43b2_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\1f0b9c684f272b536d8e1a769deb2c6df8706edbfc78229501f2b0cdd61ebf10.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\1f0b9c684f272b536d8e1a769deb2c6df8706edbfc78229501f2b0cdd61ebf10_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "skip_animations": false,
+      "src": null,
+      "file": "slides\\files\\Scene2_6\\b982e8181a684d038794597e50a74c73b0bd2fae4e424b594d4b2a4c303f3e4d.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\b982e8181a684d038794597e50a74c73b0bd2fae4e424b594d4b2a4c303f3e4d_reversed.mp4"
     },
     {
       "loop": false,
@@ -81,20 +93,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\0b2c9f1b716e223e77a86dc6dae5a31481f8925e762f524aba438d3a405dd2ae.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\0b2c9f1b716e223e77a86dc6dae5a31481f8925e762f524aba438d3a405dd2ae_reversed.mp4"
-    },
-    {
-      "loop": false,
-      "auto_next": false,
-      "playback_rate": 1.0,
-      "reversed_playback_rate": 1.0,
-      "notes": "",
-      "dedent_notes": true,
-      "skip_animations": false,
-      "src": null,
-      "file": "slides\\files\\Scene2_6\\ee85e90321687b011e651ea47849a2a68f3880b49f552bf34c9b2c34b491b995.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\ee85e90321687b011e651ea47849a2a68f3880b49f552bf34c9b2c34b491b995_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\1fab3e262374a848f6c5214a63dfa9017ce45cc1b1eb0f64575cc6dc12659c97.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\1fab3e262374a848f6c5214a63dfa9017ce45cc1b1eb0f64575cc6dc12659c97_reversed.mp4"
     },
     {
       "loop": false,
@@ -225,8 +225,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\b8984cdb9abbafc512d9b471699e3cab733eb518bdba903b846441d021286031.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\b8984cdb9abbafc512d9b471699e3cab733eb518bdba903b846441d021286031_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\7b09922a50e0a4f77ddb142a82fce58c537d6341d4944f466e345819a5f2f1c6.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\7b09922a50e0a4f77ddb142a82fce58c537d6341d4944f466e345819a5f2f1c6_reversed.mp4"
     },
     {
       "loop": false,
@@ -237,8 +237,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\c2d3ff35ec8a77fb30e96834cf2b7658e03f229047d57c9986759fe956079833.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\c2d3ff35ec8a77fb30e96834cf2b7658e03f229047d57c9986759fe956079833_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\f812bc6a42df26acf7029d82f505d2f9edc06a5a1b47fe421fd38e276be233fe.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\f812bc6a42df26acf7029d82f505d2f9edc06a5a1b47fe421fd38e276be233fe_reversed.mp4"
     },
     {
       "loop": false,
@@ -249,8 +249,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\3e84c2ec8c04e632e6aa45d349358210e81ec9f3076ba2b7dffbabd054b3df34.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\3e84c2ec8c04e632e6aa45d349358210e81ec9f3076ba2b7dffbabd054b3df34_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\ee38c40c7c2f0683cfed5a30fd9f9113ef117b81956ad4cf3cbb6b152695cc48.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\ee38c40c7c2f0683cfed5a30fd9f9113ef117b81956ad4cf3cbb6b152695cc48_reversed.mp4"
     },
     {
       "loop": false,
@@ -285,8 +285,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\76e7ef84bebeccf588e4c198aa4977b0536ed5591584877a563f90ce3d8e491a.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\76e7ef84bebeccf588e4c198aa4977b0536ed5591584877a563f90ce3d8e491a_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\6e11a7d6e85c0ab4d6e2e31b811bbe22624a3d8a122b867d4bad1f6334b41c43.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\6e11a7d6e85c0ab4d6e2e31b811bbe22624a3d8a122b867d4bad1f6334b41c43_reversed.mp4"
     },
     {
       "loop": false,
@@ -297,8 +297,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\aa9e029bfa7af923ecc00d10476682aba41794e1fcb7bceb331389e523001967.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\aa9e029bfa7af923ecc00d10476682aba41794e1fcb7bceb331389e523001967_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\c7e3eec883c358acb88d1f11d4adf987d9257c378dc384598857277bc9dd910d.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\c7e3eec883c358acb88d1f11d4adf987d9257c378dc384598857277bc9dd910d_reversed.mp4"
     },
     {
       "loop": false,
@@ -309,8 +309,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\f8ab71e2dc7ca31faa4d2c0de8086fcc1b3c73b61518cc0380010b2474d67d2d.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\f8ab71e2dc7ca31faa4d2c0de8086fcc1b3c73b61518cc0380010b2474d67d2d_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\ec11bbbe895afadd680fe44c2fe8884b841455e7f19dc5e33b0263078358ef32.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\ec11bbbe895afadd680fe44c2fe8884b841455e7f19dc5e33b0263078358ef32_reversed.mp4"
     },
     {
       "loop": false,
@@ -321,8 +321,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\cf14f9c546dd21a029b58631a0d2940b8eb157a419b142de3e6bd319fe3f9333.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\cf14f9c546dd21a029b58631a0d2940b8eb157a419b142de3e6bd319fe3f9333_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\1ef196fc7832702a7588bf31d5aa9aa536a61ab048d33478b01296793c02bd2d.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\1ef196fc7832702a7588bf31d5aa9aa536a61ab048d33478b01296793c02bd2d_reversed.mp4"
     },
     {
       "loop": false,
@@ -333,8 +333,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\2b85ea957f7fcd08c3b94bac4f68336e4099e92ea7244ac7007b2bbd885e3598.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\2b85ea957f7fcd08c3b94bac4f68336e4099e92ea7244ac7007b2bbd885e3598_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\e2c83e391f3a9d7e761a3aea5a6a02e31d3991ae803c6716dcbd2c697f669310.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\e2c83e391f3a9d7e761a3aea5a6a02e31d3991ae803c6716dcbd2c697f669310_reversed.mp4"
     },
     {
       "loop": false,
@@ -381,8 +381,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\0115f723a17bc086a766e809f855910f8e87e2e2787ae8c593dde2b69ed54a67.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\0115f723a17bc086a766e809f855910f8e87e2e2787ae8c593dde2b69ed54a67_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\206a809b7ce1702797cc386ad0b8777127c4474aea5707eb450c3d2c92ba548e.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\206a809b7ce1702797cc386ad0b8777127c4474aea5707eb450c3d2c92ba548e_reversed.mp4"
     },
     {
       "loop": false,
@@ -393,8 +393,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\9ede2af7358fac4f11769f98f07e4d05c0ee17d4ff05c97dc0dd82ffa395d95b.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\9ede2af7358fac4f11769f98f07e4d05c0ee17d4ff05c97dc0dd82ffa395d95b_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\480bc7d38914bf11ed49b622cc110c63e15b2695f6509d862d3039fc487431cf.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\480bc7d38914bf11ed49b622cc110c63e15b2695f6509d862d3039fc487431cf_reversed.mp4"
     },
     {
       "loop": false,
@@ -405,8 +405,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\703c49d2d9a97ff43f086c1773f8e4ff76fd2b4e19e59c4ce89dbd4d35d4ce48.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\703c49d2d9a97ff43f086c1773f8e4ff76fd2b4e19e59c4ce89dbd4d35d4ce48_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\59fb7e9813940ba5a57ba02220984fc56eefc0b6b88a75efbedbeec80ae60400.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\59fb7e9813940ba5a57ba02220984fc56eefc0b6b88a75efbedbeec80ae60400_reversed.mp4"
     },
     {
       "loop": false,
@@ -465,8 +465,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\0d2de5d42a793dc861d8d0bf905902da4f6b337f722d461f4391228d07cbde7b.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\0d2de5d42a793dc861d8d0bf905902da4f6b337f722d461f4391228d07cbde7b_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\34c39acd1aab4f46aeb78c6727a95b50db093e4cc62b3e6351591ccd4d583c14.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\34c39acd1aab4f46aeb78c6727a95b50db093e4cc62b3e6351591ccd4d583c14_reversed.mp4"
     },
     {
       "loop": false,
@@ -477,8 +477,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\3ee7609fc8d0a8c1ab1a5af46b84f8f9a294dbe8b653d158af7aa2ea9c2c3a2b.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\3ee7609fc8d0a8c1ab1a5af46b84f8f9a294dbe8b653d158af7aa2ea9c2c3a2b_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\46c4bf742ceafa76156a94a215ab92aee340a7096b81c6eedeb8a5d36f939515.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\46c4bf742ceafa76156a94a215ab92aee340a7096b81c6eedeb8a5d36f939515_reversed.mp4"
     },
     {
       "loop": false,
@@ -489,8 +489,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\7ffd37f18ed1e875055c27c83183b2e36028c551d93b2bb05e14b0789a36284e.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\7ffd37f18ed1e875055c27c83183b2e36028c551d93b2bb05e14b0789a36284e_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\2f6ea3efcdd180a7b507cd8399d8e2bb90d41f56de73c43359834db0ae4e84e9.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\2f6ea3efcdd180a7b507cd8399d8e2bb90d41f56de73c43359834db0ae4e84e9_reversed.mp4"
     },
     {
       "loop": false,
@@ -501,32 +501,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\Scene2_6\\33f7ff4f568c4c5781405d7074f966b2cbf24ca8511c4e9c92c80ae694357dd4.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\33f7ff4f568c4c5781405d7074f966b2cbf24ca8511c4e9c92c80ae694357dd4_reversed.mp4"
-    },
-    {
-      "loop": false,
-      "auto_next": false,
-      "playback_rate": 1.0,
-      "reversed_playback_rate": 1.0,
-      "notes": "",
-      "dedent_notes": true,
-      "skip_animations": false,
-      "src": null,
-      "file": "slides\\files\\Scene2_6\\e75dd5898781f48f287a86abc2ceb925c30c3d315e0220aa89e34c90689dde6a.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\e75dd5898781f48f287a86abc2ceb925c30c3d315e0220aa89e34c90689dde6a_reversed.mp4"
-    },
-    {
-      "loop": false,
-      "auto_next": false,
-      "playback_rate": 1.0,
-      "reversed_playback_rate": 1.0,
-      "notes": "",
-      "dedent_notes": true,
-      "skip_animations": false,
-      "src": null,
-      "file": "slides\\files\\Scene2_6\\328e92772006cb5bad0499b3bae3b0b257f2a5a6beaaa1c2bc97f755edaecef0.mp4",
-      "rev_file": "slides\\files\\Scene2_6\\328e92772006cb5bad0499b3bae3b0b257f2a5a6beaaa1c2bc97f755edaecef0_reversed.mp4"
+      "file": "slides\\files\\Scene2_6\\af42bd95df6bd1f55171ec6e9ffa5159f1b470e745f8e79a23dde7c8a6ebe267.mp4",
+      "rev_file": "slides\\files\\Scene2_6\\af42bd95df6bd1f55171ec6e9ffa5159f1b470e745f8e79a23dde7c8a6ebe267_reversed.mp4"
     }
   ],
   "resolution": [

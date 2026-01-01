@@ -56,5 +56,3 @@ file 'file:C:/Users/Le Dinh Hieu/YT_Vid/animations/media/videos/scene6/1080p60/p
 file 'file:C:/Users/Le Dinh Hieu/YT_Vid/animations/media/videos/scene6/1080p60/partial_movie_files/Scene2_6/uncached_00054.mp4'
 file 'file:C:/Users/Le Dinh Hieu/YT_Vid/animations/media/videos/scene6/1080p60/partial_movie_files/Scene2_6/uncached_00055.mp4'
 file 'file:C:/Users/Le Dinh Hieu/YT_Vid/animations/media/videos/scene6/1080p60/partial_movie_files/Scene2_6/uncached_00056.mp4'
-file 'file:C:/Users/Le Dinh Hieu/YT_Vid/animations/media/videos/scene6/1080p60/partial_movie_files/Scene2_6/uncached_00057.mp4'
-file 'file:C:/Users/Le Dinh Hieu/YT_Vid/animations/media/videos/scene6/1080p60/partial_movie_files/Scene2_6/uncached_00058.mp4'
