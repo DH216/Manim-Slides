@@ -13,7 +13,6 @@ class Scene2_5(Slide):
         # 1. Hiển thị số trang ban đầu
         self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
         self.page_number.to_corner(DR, buff=0.5)
-        self.add_fixed_in_frame_mobjects(self.page_number)
         self.add(self.page_number) 
 
         # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
