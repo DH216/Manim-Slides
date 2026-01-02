@@ -7,6 +7,26 @@ sys.path.append("../")
 
 class Scene2_4(Slide):
     def construct(self):
+        # =========================================================================
+        # SLIDE COUNTER CONFIGURATION
+        # =========================================================================
+        # Update this number to match the slide number where Scene2_3 ended
+        self.slide_count = 17
+        
+        # 1. Display initial page number
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Define next_step function (Use this to replace self.next_slide() where needed)
+        def next_step():
+            self.next_slide()
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
+        # =========================================================================
+
         # Show the forward process with noise addition
         self.next_section(skip_animations=False)
 
@@ -139,7 +159,7 @@ class Scene2_4(Slide):
         label_p_theta_xt_xt1[1].set_color(BLUE)
 
         self.next_slide()
-
+        next_step()
         self.play(
             Transform(
                 label_p_xt_xt1,
@@ -193,7 +213,7 @@ class Scene2_4(Slide):
         self.play(LaggedStart(FadeIn(nll), Create(rect_nll), lag_ratio=0.5), run_time=1.5)
         
         self.next_slide()
-
+        next_step()
         self.play(
             FadeOut(
                 x0g,
@@ -262,7 +282,7 @@ class Scene2_4(Slide):
         self.play(Transform(q_bayes_simple_1[1], q_bayes_simple_2))
 
         self.next_slide()
-
+        next_step()
         self.play(
             q_bayes_simple_1.animate.to_edge(LEFT, buff=1.5).shift(2 * UP),
             FadeOut(joint_q_bayes, q_bayes_simple),
@@ -295,7 +315,7 @@ class Scene2_4(Slide):
 
         # Show that the likelihood is intractable
         self.next_section(skip_animations=False)
-
+        next_step()
         marginalize = MathTex(
             r"- \log p_",
             r"\theta",
@@ -370,14 +390,14 @@ class Scene2_4(Slide):
         self.play(LaggedStart(*[Create(path) for path in paths[1:]], lag_ratio=0.3), run_time=1.5)
 
         self.next_slide()
-
+        next_step()
         self.play(LaggedStart(*[FadeOut(path, shift=0.5 * DOWN) for path in paths], lag_ratio=0.2), run_time=1.5)
 
         self.play(
             FadeOut(l_ellipse, l_ellipse_title, l_dot, l_dot_label),
             FadeOut(r_ellipse, r_ellipse_title, r_dot, r_dot_label),
         )
-                                                                                                                                                    
+                                                                                                                                                
         # Derive the ELBO surrogate
         self.next_section(skip_animations=False)
 
@@ -424,7 +444,7 @@ class Scene2_4(Slide):
         elbo = jensen[1]
 
         self.next_slide()
-
+        next_step()
         self.play(
             FadeOut(nll, marginalize[3:], marginalize_trick, expectactions, jensen[0], formula),
             elbo.animate.move_to(ORIGIN),
@@ -447,4 +467,4 @@ class Scene2_4(Slide):
 
 if __name__ == "__main__":
     scene = Scene2_4()
-    scene.render() 
+    scene.render()

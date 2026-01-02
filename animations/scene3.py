@@ -34,6 +34,25 @@ def apply_ddpm_step(dist_func, t, beta=0.02):
 
 class Scene2_3(Slide):
     def construct(self):
+        # =========================================================================
+        # SLIDE COUNTER CONFIGURATION
+        # =========================================================================
+        # Update this number to match the slide number where Scene2_2 ended
+        self.slide_count = 13
+        
+        # 1. Display initial page number
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Define next_step function (Use this to replace self.next_slide() where needed)
+        def next_step():
+            self.next_slide()
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
+        # =========================================================================
 
         # Explain the objective
         self.next_section(skip_animations=False)
@@ -151,7 +170,7 @@ class Scene2_3(Slide):
         x0 = MathTex(r"x_0", font_size=32).move_to(circle_xt1)
 
         self.next_slide()
-
+        next_step()
         self.play(FadeOut(q_xt_xt1))
         self.play(ReplacementTransform(xt1, x0))
         self.play(Write(q_xt_x0_exp),run_time=1)
@@ -281,7 +300,7 @@ class Scene2_3(Slide):
             ),
             run_time=1.5,
         )
-
+        next_step()
         ddpm_paper = ImageMobject(
             "Imgs/Scene1/ddpm_1",
         ).scale_to_fit_width(6)
@@ -297,7 +316,6 @@ class Scene2_3(Slide):
         self.play(FadeOut(ddpm_paper, shift=0.5 * UP))
 
         self.next_slide()
-
         self.play(
             LaggedStart(
                 Uncreate(new_plot),
@@ -308,6 +326,7 @@ class Scene2_3(Slide):
         )
 
         self.play(chain.animate.move_to(ORIGIN))
+        next_step()
 
         # Talk about varying beta
         self.next_section(skip_animations=False)
@@ -329,7 +348,8 @@ class Scene2_3(Slide):
 
         self.next_slide()
 
-        self.play(FadeOut(*self.mobjects, shift=0.5 * DOWN))
+        # MODIFIED: FadeOut everything EXCEPT the page number
+        self.play(FadeOut(Group(*[m for m in self.mobjects if m != self.page_number]), shift=0.5 * DOWN))
 
 
 if __name__ == "__main__":

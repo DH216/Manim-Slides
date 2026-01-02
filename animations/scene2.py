@@ -7,6 +7,26 @@ sys.path.append("../")
 
 class Scene2_2(Slide):
     def construct(self):
+        # =========================================================================
+        # SLIDE COUNTER CONFIGURATION
+        # =========================================================================
+        # Update this number to match the slide number where Scene2_1 ended
+        self.slide_count = 11 
+        
+        # 1. Display initial page number
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Define next_step function (Use this to replace self.next_slide() where needed)
+        def next_step():
+            self.next_slide()
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
+        # =========================================================================
+
         
         # Describe the noising and notations
         self.next_section(skip_animations=False)
@@ -192,7 +212,6 @@ class Scene2_2(Slide):
         self.play(Write(eq_7))
         
         self.next_slide()
-
         self.play(ReplacementTransform(eq_7, label_q0_q2))
 
         # Iterate to time t
@@ -206,6 +225,7 @@ class Scene2_2(Slide):
         )
 
         self.next_slide()
+        next_step()
 
         self.play(
             FadeOut(
@@ -290,7 +310,8 @@ class Scene2_2(Slide):
         self.next_slide()
         self.play(ApplyWave(variance_exploding))
 
-        self.play(FadeOut(*self.mobjects))
+        # MODIFIED: FadeOut everything EXCEPT the page number
+        self.play(FadeOut(Group(*[m for m in self.mobjects if m != self.page_number])))
 
 
 if __name__ == "__main__":

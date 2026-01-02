@@ -9,6 +9,27 @@ from src.kde_density import KDEContours
 
 class Scene2_1(Slide):
     def construct(self):
+        # =========================================================================
+        # PHẦN CẤU HÌNH SỐ TRANG (Được thêm vào, không ảnh hưởng code cũ)
+        # =========================================================================
+        self.slide_count = 8  # Số trang bắt đầu
+        
+        # 1. Hiển thị số trang ban đầu
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Định nghĩa hàm next_step (Dùng để thay thế self.next_slide ở đâu bạn muốn)
+        def next_step():
+            self.next_slide()  # Vẫn dừng slide như bình thường
+            
+            # Nhưng chạy tiếp thì sẽ tăng số trang
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
+        # =========================================================================
+
 
         # Show the papers
         self.next_section(skip_animations=False)
@@ -175,7 +196,6 @@ class Scene2_1(Slide):
             ),
             run_time=0.8
         )
-
         self.next_slide()
 
         self.play(LaggedStart(*[Write(item) for item in contrib_items], lag_ratio=0.5), run_time=1)
@@ -188,6 +208,8 @@ class Scene2_1(Slide):
         self.wait(0.5)
 
         self.next_slide()
+        next_step()
+
 
         self.play(FadeOut(contributions, ddpm_paper), shift=0.5 * RIGHT)
 
@@ -338,7 +360,7 @@ class Scene2_1(Slide):
 
         # Progressive degradation / restoration
         self.next_section(skip_animations=False)
-
+        next_step()
         # Load noisy versions of the image
         img0_noise30 = ImageMobject("Imgs/Scene1/ffhq_0_noise_30").scale_to_fit_width(
             2 * img0.width
@@ -520,7 +542,6 @@ class Scene2_1(Slide):
         self.play(FadeOut(*self.mobjects, shift=0.5 * DOWN))
 
         self.wait(1)
-        
 
 
 if __name__ == "__main__":

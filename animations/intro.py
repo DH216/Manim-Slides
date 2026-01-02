@@ -23,7 +23,30 @@ class Intro(Slide):
         box.round_corners(radius=0.1)
         label.move_to(box.get_center())
         return VGroup(box, label)
+
     def construct(self):
+        # =========================================================================
+        # PHẦN KHAI BÁO BỘ ĐẾM SỐ TRANG (Mình chỉ thêm đoạn này)
+        # =========================================================================
+        # Lưu ý: Sửa số 1 thành số trang bắt đầu của file này (nếu nối tiếp file trước)
+        self.slide_count = 1  
+        
+        # 1. Hiển thị số trang ban đầu
+        self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+        self.page_number.to_corner(DR, buff=0.5)
+        self.add(self.page_number) 
+
+        # 2. Hàm next_step để bạn tự dùng khi cần qua trang mới
+        def next_step():
+            self.next_slide()
+            self.slide_count += 1
+            new_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
+            new_number.to_corner(DR, buff=0.5)
+            self.page_number.become(new_number)
+        # =========================================================================
+
+
+        # --- CODE GỐC CỦA BẠN (KHÔNG THAY ĐỔI GÌ) ---
         
         self.next_slide()
         # Tiêu đề nhóm
@@ -41,7 +64,7 @@ class Intro(Slide):
             color=YELLOW
         ).scale(0.6).next_to(title, DOWN, buff=0.7)
         self.add(topic)
-       
+        
 
         # Danh sách thành viên
         members = [
@@ -59,7 +82,7 @@ class Intro(Slide):
             ]
         ).arrange(DOWN, aligned_edge=LEFT).next_to(topic, DOWN, buff=0.7)
 
-       
+        
         self.add(member_texts)
         self.wait()
         self.next_slide()
@@ -68,7 +91,7 @@ class Intro(Slide):
         group1 = VGroup(title, topic, member_texts)
         self.play(FadeOut(group1))
         self.next_slide()
-
+        next_step()
         # Hình 1
         img1 = ImageMobject("./Imgs/tao_anh_bang_ai_1_0ff81bed08.jpg")
         img1.scale(0.7).to_edge(LEFT)
@@ -92,7 +115,7 @@ class Intro(Slide):
         group2 = Group(img1, img2, img3)
         self.play(FadeOut(group2))
         self.next_slide()
-        
+        next_step()
         # =================Taxonomy=====================
         # Title
         title = Text("Taxonomy of Generative Models", font_size=30, weight=BOLD)
@@ -187,7 +210,7 @@ class Intro(Slide):
         right_side_label1.next_to(line5, LEFT, buff=0.2).shift(UP*0.5)
 
         right_side_label2 = Paragraph("Iterative\nprocedure to\napproximate\nsamples\nfrom P(x)", 
-                                 font_size=20,alignment="center")
+                                     font_size=20,alignment="center")
         right_side_label2.next_to(line6, RIGHT, buff=0.3).shift(UP*0.5)
         
         # Bottom level - Model names
@@ -250,15 +273,14 @@ class Intro(Slide):
 
         self.next_slide()
 
-        self.play(FadeOut(*self.mobjects))
-
+        self.play(FadeOut(Group(*[m for m in self.mobjects if m != self.page_number])))
         self.next_slide()
+        next_step()
         # ==========================================
 
         # ================= TITLE ==================
         title = Text("Generative Model Architectures Overview", font_size=35).to_edge(UP)
-        self.play(FadeIn(title))
-        self.next_slide()
+        
 
         # ================= GAN =====================
         gan_title = T("GAN: Adversarial\ntraining", 20, color=WHITE).next_to(title, DOWN, buff=1).to_edge(LEFT).shift(RIGHT)
@@ -278,7 +300,11 @@ class Intro(Slide):
             vae_title, vae,
             f_title, f,
             dm_title, dm, title
-        )
+        ).scale_to_fit_width(13).shift(UP*0.5)
+
+        self.play(FadeIn(title))
+        self.next_slide()
+
         self.play(FadeIn(gan_title,gan))
         self.next_slide() 
 
@@ -329,7 +355,7 @@ class Intro(Slide):
         ).arrange(RIGHT, buff=0.2)
 
         all_objects = Group(main_group, img_loss).move_to(ORIGIN).scale(2).shift(RIGHT*1)
-
+        next_step()
         title = Text("Variational Autoencoder (VAE)", font_size=40, color=BLUE).to_edge(UP)
         self.play(FadeIn(title))
         self.next_slide()
@@ -350,7 +376,8 @@ class Intro(Slide):
                     FadeIn(img_output), FadeIn(img_loss, shift=UP),
                     lag_ratio=0.2
                     ))
-        self.play(FadeOut(all_objects), FadeOut(title))
+    
+        
 
         # ===================================================================
         # PHẦN 4: CHI TIẾT GAN (Đã bỏ mũi tên)
@@ -369,7 +396,10 @@ class Intro(Slide):
             self.add(Text(f"Lỗi thiếu file GAN:\n{str(e).split(':')[-1].strip()}", color=RED, font_size=20))
             self.wait(2)
             return
+        next_step()
 
+        self.play(FadeOut(all_objects), FadeOut(title))
+        
         # Sắp xếp bố cục GAN
         # Trình chiếu GAN
         g_out.move_to(ORIGIN).to_edge(RIGHT).shift(LEFT*1)
@@ -410,7 +440,8 @@ class Intro(Slide):
 
         self.play(FadeOut(Group( gan_main_title,high_main_title,Low_main_title,g_out,g_disc,g_fake,g_gen,g_latent,g_real,g_sample)))
         self.wait(0.5)
-# --- CẤU HÌNH MÀU SẮC & STYLE ---
+        next_step()
+        # --- CẤU HÌNH MÀU SẮC & STYLE ---
         # Lấy màu giống trong hình/video
         COLOR_FORWARD = "#FF5252"  # Màu đỏ cam
         COLOR_REVERSE = "#4FC3F7"  # Màu xanh dương sáng
