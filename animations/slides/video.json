@@ -9,20 +9,8 @@
       "dedent_notes": true,
       "skip_animations": false,
       "src": null,
-      "file": "slides\\files\\video\\367dc918be8b2a4b370a76f87a9e45734585767eb1acf7c35c8db019e4ea03b2.mp4",
-      "rev_file": "slides\\files\\video\\367dc918be8b2a4b370a76f87a9e45734585767eb1acf7c35c8db019e4ea03b2_reversed.mp4"
-    },
-    {
-      "loop": false,
-      "auto_next": false,
-      "playback_rate": 1.0,
-      "reversed_playback_rate": 1.0,
-      "notes": "",
-      "dedent_notes": true,
-      "skip_animations": false,
-      "src": null,
-      "file": "slides\\files\\video\\445b58ff9a9d4a3b9777b2350387e0440d9662e96832a3c02c2dd4fc408a39b8.mp4",
-      "rev_file": "slides\\files\\video\\445b58ff9a9d4a3b9777b2350387e0440d9662e96832a3c02c2dd4fc408a39b8_reversed.mp4"
+      "file": "slides\\files\\video\\786b44dacbf73f08d6fe1a119a28c3beb6dd9f00b77bb5b077bc32749fc4cfd5.mp4",
+      "rev_file": "slides\\files\\video\\786b44dacbf73f08d6fe1a119a28c3beb6dd9f00b77bb5b077bc32749fc4cfd5_reversed.mp4"
     }
   ],
   "resolution": [

@@ -23,18 +23,6 @@
       "src": null,
       "file": "slides\\files\\tltk\\80049e423e6a6128c2c8f6f5fc23ddfbe0357b1487fd280950c435824f0d43b2.mp4",
       "rev_file": "slides\\files\\tltk\\80049e423e6a6128c2c8f6f5fc23ddfbe0357b1487fd280950c435824f0d43b2_reversed.mp4"
-    },
-    {
-      "loop": false,
-      "auto_next": false,
-      "playback_rate": 1.0,
-      "reversed_playback_rate": 1.0,
-      "notes": "",
-      "dedent_notes": true,
-      "skip_animations": false,
-      "src": null,
-      "file": "slides\\files\\tltk\\725ec81fadaa74da4951d67d233dd4baa742ada23d9e5cf26faec2a44bee4f93.mp4",
-      "rev_file": "slides\\files\\tltk\\725ec81fadaa74da4951d67d233dd4baa742ada23d9e5cf26faec2a44bee4f93_reversed.mp4"
     }
   ],
   "resolution": [
