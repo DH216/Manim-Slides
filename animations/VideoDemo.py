@@ -84,7 +84,7 @@ class VideoMobject(ImageMobject):
 # ==============================================================================
 class video(Slide):
     def construct(self):
-        self.slide_count = 36  # Số trang bắt đầu
+        self.slide_count = 39  # Số trang bắt đầu
 
         # 1. Hiển thị số trang ban đầu
         self.page_number = Text(f"{self.slide_count}", font_size=24, color=GRAY)
