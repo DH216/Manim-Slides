@@ -1097,10 +1097,9 @@ class Scene2_6(Slide,MovingCameraScene):
                 )
             )
 
-        self.next_slide()
-        self.play(FadeOut(*self.mobjects, shift=0.5 * DOWN))
+        
+        #self.play(FadeOut(*self.mobjects, shift=0.5 * DOWN))
 
-        self.wait(1)
 
 
 if __name__ == "__main__":
