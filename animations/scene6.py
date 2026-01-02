@@ -1097,9 +1097,6 @@ class Scene2_6(Slide,MovingCameraScene):
                 )
             )
 
-        
-        #self.play(FadeOut(*self.mobjects, shift=0.5 * DOWN))
-
 
 
 if __name__ == "__main__":
